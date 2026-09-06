@@ -675,3 +675,31 @@ input::placeholder {
 .history-leg-winner {
     color: var(--neon-green);
 }
+
+/* Weed Explosion (al ganar) */
+.weed-leaf {
+    position: fixed;
+    top: 50vh;
+    left: 50vw;
+    margin-top: -25px;
+    margin-left: -25px;
+    pointer-events: none;
+    z-index: 9999;
+    animation: explode ease-out forwards;
+    opacity: 0;
+    filter: drop-shadow(0 0 10px var(--neon-green));
+}
+
+@keyframes explode {
+    0% {
+        transform: translate(0, 0) scale(0.1) rotate(0deg);
+        opacity: 1;
+    }
+    80% {
+        opacity: 1;
+    }
+    100% {
+        transform: translate(var(--tx), var(--ty)) scale(1) rotate(var(--rot));
+        opacity: 0;
+    }
+}
