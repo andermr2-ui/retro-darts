@@ -257,7 +257,15 @@ input::placeholder {
     max-width: 400px;
     background: rgba(11, 11, 26, 0.8);
     border: 2px solid var(--grid-color);
-    padding: 2cqmin; /* Container Query scaling */
+    /* Fijo en px, NO cqmin: cqmin declarado directamente en .player-card
+       (el elemento con container-type:size) no puede medirse contra su
+       propio tamaño — por espec, cae al tamaño del PADRE (.player-row)
+       en cambio. Los botones de adentro (posicionados con cqmin sobre
+       SUS PROPIOS valores) sí miden contra .player-card. Dos bases
+       distintas para el mismo "2cqmin" nominal = distancias inconsistentes
+       de borde. 10px fijo es la misma distancia para todos, en cualquier
+       tamaño de ficha. */
+    padding: 10px;
     border-radius: 2cqmin;
     position: relative;
     overflow: hidden;
@@ -290,8 +298,8 @@ input::placeholder {
 
 .btn-remove {
     position: absolute;
-    top: 2cqmin;
-    right: 2cqmin;
+    top: 10px;
+    right: 10px;
     z-index: 20;
 }
 
@@ -340,11 +348,11 @@ input::placeholder {
 
 .card-top-left {
     position: absolute;
-    top: 2cqmin;
-    left: 2cqmin;
+    top: 10px;
+    left: 10px;
     display: flex;
     align-items: center;
-    gap: 1cqmin;
+    gap: 10px;
     z-index: 20;
 }
 
@@ -403,12 +411,12 @@ input::placeholder {
     flex-shrink: 0;
 }
 
-/* Pegado al margen inferior de la ficha — el padding de 2cqmin del propio
+/* Pegado al margen inferior de la ficha — el padding de 10px del propio
    .player-card ya deja el mismo margen que los botones de arriba, así que
    alcanza con empujarlo al fondo con margin-top:auto. */
 .throw-controls {
     display: flex;
-    gap: 2cqmin;
+    gap: 10px;
     margin-top: auto;
     align-items: stretch;
     flex-shrink: 0;
@@ -1037,14 +1045,19 @@ input[type="color"] {
         column-gap: 2cqmin;
     }
 
+    /* Sin padding-top propio: eso sumaba un margen EXTRA por encima del
+       padding de 10px que ya pone .player-card, así que el ícono de
+       arriba quedaba más lejos del borde que la X (que solo tiene el
+       padding de la ficha). Con .card-top-left tocando directamente el
+       borde de la celda de grilla, hereda el mismo padding de 10px que
+       todo lo demás. */
     .card-top-left {
         grid-area: icons;
         position: static;
         flex-direction: column;
         justify-content: flex-start;
-        align-items: center;
-        gap: 4cqmin;
-        padding-top: 2cqmin;
+        align-items: flex-start;
+        gap: 10px;
     }
 
     .player-name {
