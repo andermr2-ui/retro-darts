@@ -216,6 +216,14 @@ input::placeholder {
 }
 
 /* Grid & Cards (Container Queries for Infinite Scaling) */
+/* overflow-y:auto siempre (no solo en el modo angosto de 640px): las
+   fichas están pensadas para encoger vía cqmin y entrar sin scroll,
+   pero en un celular en horizontal el ancho supera los 640px (usa el
+   grid de varias columnas, pensado para pantallas altas de escritorio)
+   mientras el alto real es muy chico — las filas de abajo quedaban
+   directamente cortadas, sin forma de bajar, porque el scroll solo
+   estaba habilitado para el layout angosto. Con esto, sea cual sea el
+   layout, si el contenido no entra siempre se puede scrollear. */
 .players-grid {
     flex: 1;
     display: flex;
@@ -223,6 +231,7 @@ input::placeholder {
     justify-content: space-evenly;
     gap: 0.5vh;
     min-height: 0;
+    overflow-y: auto;
 }
 
 .player-row {
@@ -238,7 +247,6 @@ input::placeholder {
    script.js), con scroll si no entran todas en la pantalla. */
 @media (max-width: 640px) {
     .players-grid {
-        overflow-y: auto;
         justify-content: flex-start;
     }
 
@@ -246,15 +254,18 @@ input::placeholder {
         flex: none;
         height: 300px;
     }
-
-    .player-row .player-card {
-        min-height: 0;
-    }
 }
 
 .player-card {
     flex: 1;
     max-width: 400px;
+    /* min-height:0 acá (no solo en el modo angosto de 640px) para que
+       la ficha pueda encogerse de verdad cuando hay varias filas de
+       jugadores y poco alto disponible (ej. celular en horizontal, más
+       ancho que 640px pero con poca altura) — sin esto, una ficha no se
+       achica más allá de su contenido y las filas de más abajo quedan
+       cortadas por el overflow:hidden del body. */
+    min-height: 0;
     background: rgba(11, 11, 26, 0.8);
     border: 2px solid var(--grid-color);
     /* Fijo en px, NO cqmin: cqmin declarado directamente en .player-card
