@@ -750,16 +750,21 @@ function renderPlayers() {
             // que el número de ronda de la entrada en el índice i es
             // (total de tiros - i).
             const totalThrows = player.history.length;
+            // El número grande de la ficha ya muestra el total acumulado —
+            // repetirlo acá era redundante (queda justo encima). En su
+            // lugar, el historial muestra cuánto falta para 420, en
+            // negativo (result - TARGET_SCORE), como cuenta regresiva.
             const renderHistoryItem = (h, i) => {
                 const roundNum = totalThrows - i;
+                const remaining = h.result - TARGET_SCORE;
                 return h.bust
                     ? `<div class="history-item history-bust">
                         <span>Ronda ${roundNum}: ${h.throw} pts. (Sobran ${h.sobrante})</span>
-                        <span>→ ${h.result} pts.</span>
+                        <span>→ ${remaining} pts.</span>
                     </div>`
                     : `<div class="history-item">
                         <span>Ronda ${roundNum}: ${h.throw} pts.</span>
-                        <span>→ ${h.result} pts.</span>
+                        <span>→ ${remaining} pts.</span>
                     </div>`;
             };
 
