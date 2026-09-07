@@ -645,12 +645,52 @@ function fitScoreText(scoreEl) {
     izquierda). Si se centra por avance, se ve descentrada a ojo aunque
     la CAJA esté perfectamente centrada. actualBoundingBoxLeft/Right da
     los bordes reales de la tinta para corregir ese desvío. */
-function fitNameText(nameTextEl) {
+function fitNameText(nameTextEl, options = {}) {
     if (!nameTextEl) return;
     nameTextEl.style.transform = 'none';
 
     const container = nameTextEl.parentElement;
-    const maxWidth = container.clientWidth * 0.96;
+    let maxWidth = container.clientWidth * 0.96;
+    let extraShift = 0;
+
+    // Los nombres deben APROVECHAR todo el espacio asignado (crecer) —
+    // el tamaño de fuente apunta directo a la altura de .marker-icon-btn
+    // (estable: no depende del propio texto, a diferencia de la fila
+    // "name" de la grilla, que es "auto" y crecería en bucle si se
+    // midiera contra sí misma). Si a ESE tamaño el nombre desborda el
+    // ancho, el estrechado (scaleX) de acá abajo lo comprime.
+    //
+    // El ancho máximo y el centrado se calculan contra la posición REAL
+    // de los botones (ícono izquierdo y X derecha), no contra los bordes
+    // de la celda de grilla .player-name — la celda no siempre coincide
+    // exactamente con dónde están esos botones (columnas 1/3 basadas en
+    // % son una aproximación al ancho real de .marker-icon-btn, no un
+    // calce exacto), así que centrar/limitar por la celda podía dejar
+    // menos de los 10px pedidos de un lado. No se aplica a
+    // .throw-placeholder ("PUNTOS"), que no tiene un botón externo
+    // específico que evitar.
+    if (options.growToFit) {
+        const card = nameTextEl.closest('.player-card');
+        const refBtn = card ? card.querySelector('.marker-icon-btn') : null;
+        const iconBtn = card ? card.querySelector('.card-top-left .marker-icon-btn') : null;
+        const xBtn = card ? card.querySelector('.btn-remove') : null;
+
+        if (refBtn) {
+            nameTextEl.style.fontSize = `${refBtn.getBoundingClientRect().height / 1.2}px`;
+        }
+
+        if (iconBtn && xBtn) {
+            const leftBound = iconBtn.getBoundingClientRect().right + 10;
+            const rightBound = xBtn.getBoundingClientRect().left - 10;
+            maxWidth = Math.max(0, rightBound - leftBound);
+
+            const trueCenter = (leftBound + rightBound) / 2;
+            const cellRect = container.getBoundingClientRect();
+            const cellCenter = cellRect.left + cellRect.width / 2;
+            extraShift = trueCenter - cellCenter;
+        }
+    }
+
     if (maxWidth <= 0) return;
 
     const cs = getComputedStyle(nameTextEl);
@@ -663,7 +703,10 @@ function fitNameText(nameTextEl) {
     const shiftX = (inkRightGap - inkLeftGap) / 2;
 
     const scale = naturalWidth > maxWidth ? maxWidth / naturalWidth : 1;
-    nameTextEl.style.transform = `scaleX(${scale}) translateX(${shiftX}px)`;
+    // extraShift va AFUERA de scaleX a propósito: es una corrección en
+    // píxeles de pantalla ya finales (distancia real entre botones vs.
+    // centro de la celda), no debe encogerse si el texto se comprime.
+    nameTextEl.style.transform = `translateX(${extraShift}px) scaleX(${scale}) translateX(${shiftX}px)`;
 }
 
 let fitScoreResizeTimer = null;
@@ -671,8 +714,8 @@ function refitAllScores() {
     clearTimeout(fitScoreResizeTimer);
     fitScoreResizeTimer = setTimeout(() => {
         document.querySelectorAll('.player-score').forEach(fitScoreText);
-        document.querySelectorAll('.player-name-text').forEach(fitNameText);
-        document.querySelectorAll('.throw-placeholder').forEach(fitNameText);
+        document.querySelectorAll('.player-name-text').forEach(el => fitNameText(el, { growToFit: true }));
+        document.querySelectorAll('.throw-placeholder').forEach(el => fitNameText(el));
     }, 120);
 }
 
@@ -826,7 +869,7 @@ function renderPlayers() {
                     updatePlaceholderVisibility(input);
                 }
                 fitScoreText(card.querySelector('.player-score'));
-                fitNameText(card.querySelector('.player-name-text'));
+                fitNameText(card.querySelector('.player-name-text'), { growToFit: true });
                 fitNameText(card.querySelector('.throw-placeholder'));
             }, 0);
 

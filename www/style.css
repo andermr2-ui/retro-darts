@@ -1051,15 +1051,26 @@ input[type="color"] {
     display: grid;
     /* La 3ra columna no tiene contenido — existe solo para que el
        nombre y el número queden centrados entre los iconos de la
-       izquierda y la X/OK de la derecha, no pegados a la derecha. */
-    grid-template-columns: 15cqmin 1fr 15cqmin;
+       izquierda y la X/OK de la derecha, no pegados a la derecha.
+
+       % en vez de cqmin a propósito: grid-template-columns está
+       declarado en .player-card, el mismo elemento con
+       container-type:size — por espec, cqmin ahí NO puede medirse
+       contra su propia caja (sería circular), así que cae al tamaño
+       del PADRE (.player-row) en cambio. Eso hacía que esta columna
+       midiera ~120px (contra la fila) mientras el botón real de adentro
+       (.marker-icon-btn, un descendiente, sí mide bien contra la ficha)
+       terminaba en ~44px — la columna quedaba mucho más ancha que su
+       propio contenido, angostando de más la columna del nombre. % sí
+       se resuelve contra el ancho real de LA FICHA. */
+    grid-template-columns: 11% 1fr 11%;
     grid-template-rows: auto 1fr auto auto;
     grid-template-areas:
         "icons name    ."
         "icons middle  ."
         "history history history"
         "controls controls controls";
-    column-gap: 2cqmin;
+    column-gap: 10px;
 }
 
     /* Sin padding-top propio: eso sumaba un margen EXTRA por encima del
