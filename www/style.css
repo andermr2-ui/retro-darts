@@ -234,6 +234,20 @@ input::placeholder {
     width: 100%;
 }
 
+/* Celular: una ficha por fila a todo el ancho (ver getSymmetricLayout en
+   script.js), con scroll si no entran todas en la pantalla. */
+@media (max-width: 640px) {
+    .players-grid {
+        overflow-y: auto;
+        justify-content: flex-start;
+    }
+
+    .player-row {
+        flex: none;
+        min-height: 260px;
+    }
+}
+
 .player-card {
     flex: 1;
     max-width: 400px;

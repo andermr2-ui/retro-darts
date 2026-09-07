@@ -309,7 +309,7 @@ async function init() {
 }
 
 function setupEventListeners() {
-    window.addEventListener('resize', refitAllScores);
+    window.addEventListener('resize', debouncedRelayout);
 
     btnReset.addEventListener('click', resetMatch);
 
@@ -629,8 +629,22 @@ function refitAllScores() {
     }, 120);
 }
 
+/** Al redimensionar (o rotar el celular), no alcanza con reajustar el
+    tamaño del número — hay que rearmar el grid entero por si se cruza el
+    punto de quiebre a diseño de una sola columna (ver getSymmetricLayout). */
+let relayoutTimer = null;
+function debouncedRelayout() {
+    clearTimeout(relayoutTimer);
+    relayoutTimer = setTimeout(renderPlayers, 150);
+}
+
+/** En pantallas angostas (celular), meter 2-3 fichas por fila las deja
+    ilegibles — mejor una debajo de la otra a todo el ancho, con scroll. */
+const MOBILE_BREAKPOINT = 640;
+
 function getSymmetricLayout(n) {
     if (n === 0) return [];
+    if (window.innerWidth < MOBILE_BREAKPOINT) return new Array(n).fill(1);
     if (n === 1) return [1];
     if (n === 2) return [2];
     if (n === 3) return [3];
