@@ -351,7 +351,8 @@ input::placeholder {
     top: 10px;
     left: 10px;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
     gap: 10px;
     z-index: 20;
 }
@@ -376,7 +377,11 @@ input::placeholder {
     align-items: center;
     font-size: 8cqmin;
     margin-bottom: 1cqmin;
-    margin-top: 15cqmin;
+    /* Los 3 iconos de .card-top-left ahora se apilan en columna (10px
+       arriba + 3 botones de 15cqmin + 2 huecos de 10px) — el nombre
+       tiene que empezar después de esa columna entera, no de un solo
+       ícono como cuando iban en fila horizontal. */
+    margin-top: calc(45cqmin + 30px);
     white-space: nowrap;
     overflow: hidden;
     line-height: 1.2;
