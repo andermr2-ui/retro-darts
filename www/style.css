@@ -1109,8 +1109,14 @@ input[type="color"] {
        align-self:center la caja se encoge al contenido y la medición
        queda circular (ver fitScoreText en script.js). El centrado
        visual del número se resuelve acá adentro con flex. */
+    /* grid-column 2/4 (no solo la celda "middle") a propósito: el número
+       usa también el ancho de la 3ra columna vacía (la que existe solo
+       para centrar el NOMBRE simétrico con la X), en vez de dejarla
+       vacía — más espacio real para crecer y un centrado que aprovecha
+       ese lugar en vez de quedar angosto. */
     .player-score {
-        grid-area: middle;
+        grid-row: 2;
+        grid-column: 2 / 4;
         min-width: 0;
         min-height: 0;
         display: flex;
@@ -1123,7 +1129,8 @@ input[type="color"] {
     }
 
     .history-full {
-        grid-area: middle;
+        grid-row: 2;
+        grid-column: 2 / 4;
     }
 
     .throw-controls {
