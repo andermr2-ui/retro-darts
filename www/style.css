@@ -351,8 +351,7 @@ input::placeholder {
     top: 10px;
     left: 10px;
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     gap: 10px;
     z-index: 20;
 }
@@ -377,11 +376,7 @@ input::placeholder {
     align-items: center;
     font-size: 8cqmin;
     margin-bottom: 1cqmin;
-    /* Los 3 iconos de .card-top-left ahora se apilan en columna (10px
-       arriba + 3 botones de 15cqmin + 2 huecos de 10px) — el nombre
-       tiene que empezar después de esa columna entera, no de un solo
-       ícono como cuando iban en fila horizontal. */
-    margin-top: calc(45cqmin + 30px);
+    margin-top: 15cqmin;
     white-space: nowrap;
     overflow: hidden;
     line-height: 1.2;
@@ -1025,30 +1020,30 @@ input[type="color"] {
     font-size: 1.3rem;
 }
 
-/* Reordenamiento de la ficha en celular (ver mockup del usuario). Va al
-   final del archivo a propósito: son overrides de reglas base como
-   .player-card{display:flex} / .throw-stepper-btn{...} definidas más
-   arriba, y en CSS gana la que aparece después ante un empate de
-   especificidad — si este bloque quedara antes de esas reglas base, el
-   media query perdería aunque matchee. */
-@media (max-width: 640px) {
-    /* Los iconos de acción pasan de fila horizontal arriba-a-la-izquierda
-       a columna vertical pegada al borde, para liberar todo el ancho de
-       arriba para el nombre. */
-    .player-card {
-        display: grid;
-        /* La 3ra columna no tiene contenido — existe solo para que el
-           nombre y el número queden centrados entre los iconos de la
-           izquierda y la X/OK de la derecha, no pegados a la derecha. */
-        grid-template-columns: 15cqmin 1fr 15cqmin;
-        grid-template-rows: auto 1fr auto auto;
-        grid-template-areas:
-            "icons name    ."
-            "icons middle  ."
-            "history history history"
-            "controls controls controls";
-        column-gap: 2cqmin;
-    }
+/* Reordenamiento de la ficha: iconos en columna a la izquierda, nombre
+   arriba entre la columna y la X, número centrado en el medio del
+   "marco" que forman los botones (ver descripción del usuario), en
+   escritorio Y en celular por igual. Va al final del archivo a
+   propósito: son overrides de reglas base como .player-card{display:flex}
+   / .throw-stepper-btn{...} definidas más arriba, y en CSS gana la que
+   aparece después ante un empate de especificidad. */
+
+/* Los iconos de acción van en columna vertical pegada al borde, para
+   liberar todo el ancho de arriba para el nombre. */
+.player-card {
+    display: grid;
+    /* La 3ra columna no tiene contenido — existe solo para que el
+       nombre y el número queden centrados entre los iconos de la
+       izquierda y la X/OK de la derecha, no pegados a la derecha. */
+    grid-template-columns: 15cqmin 1fr 15cqmin;
+    grid-template-rows: auto 1fr auto auto;
+    grid-template-areas:
+        "icons name    ."
+        "icons middle  ."
+        "history history history"
+        "controls controls controls";
+    column-gap: 2cqmin;
+}
 
     /* Sin padding-top propio: eso sumaba un margen EXTRA por encima del
        padding de 10px que ya pone .player-card, así que el ícono de
@@ -1140,4 +1135,3 @@ input[type="color"] {
     .throw-controls > .marker-icon-btn:last-child {
         order: 5;
     }
-}
