@@ -244,7 +244,11 @@ input::placeholder {
 
     .player-row {
         flex: none;
-        min-height: 260px;
+        height: 300px;
+    }
+
+    .player-row .player-card {
+        min-height: 0;
     }
 }
 
@@ -359,13 +363,30 @@ input::placeholder {
     flex-shrink: 0;
 }
 
+/* display:flex + justify-content:center (no text-align) a propósito: si
+   el nombre desborda el ancho disponible, text-align:center lo deja
+   pegado a la izquierda y corta solo la derecha (no centra el
+   desborde) — flexbox sí centra simétricamente aunque el contenido sea
+   más ancho que el contenedor. */
 .player-name {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 8cqmin;
     margin-bottom: 1cqmin;
     margin-top: 15cqmin;
-    text-align: center;
-    word-break: break-word;
+    white-space: nowrap;
+    overflow: hidden;
     line-height: 1.2;
+}
+
+/* Nunca pasa a una 2da línea: si no entra, fitNameText() lo comprime
+   horizontalmente (scaleX) en vez de dejarlo hacer wrap. flex-shrink:0
+   para que sea el scaleX (no flexbox) el que decida el tamaño final, y
+   transform-origin:center para que el achique quede centrado. */
+.player-name-text {
+    flex-shrink: 0;
+    transform-origin: center;
 }
 
 /* Ocupa todo el espacio libre entre el nombre y el cuadro de puntos, y
@@ -960,4 +981,107 @@ input[type="color"] {
     font-size: 0.75rem;
     line-height: 1.6;
     margin-bottom: 1.5rem;
+}
+
+/* Reordenamiento de la ficha en celular (ver mockup del usuario). Va al
+   final del archivo a propósito: son overrides de reglas base como
+   .player-card{display:flex} / .throw-stepper-btn{...} definidas más
+   arriba, y en CSS gana la que aparece después ante un empate de
+   especificidad — si este bloque quedara antes de esas reglas base, el
+   media query perdería aunque matchee. */
+@media (max-width: 640px) {
+    /* Los iconos de acción pasan de fila horizontal arriba-a-la-izquierda
+       a columna vertical pegada al borde, para liberar todo el ancho de
+       arriba para el nombre. */
+    .player-card {
+        display: grid;
+        /* La 3ra columna no tiene contenido — existe solo para que el
+           nombre y el número queden centrados entre los iconos de la
+           izquierda y la X/OK de la derecha, no pegados a la derecha. */
+        grid-template-columns: 15cqmin 1fr 15cqmin;
+        grid-template-rows: auto 1fr auto auto;
+        grid-template-areas:
+            "icons name    ."
+            "icons middle  ."
+            "history history history"
+            "controls controls controls";
+        column-gap: 2cqmin;
+    }
+
+    .card-top-left {
+        grid-area: icons;
+        position: static;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 4cqmin;
+        padding-top: 2cqmin;
+    }
+
+    .player-name {
+        grid-area: name;
+        margin-top: 1cqmin;
+        min-width: 0;
+    }
+
+    /* .card-middle deja de tener su propia caja (display:contents no
+       toca el árbol DOM) para que .player-score y .history-strip pasen a
+       ser hijos directos de la grilla de .player-card — así el
+       historial puede tener su propia fila a todo el ancho en vez de
+       heredar el ancho angosto de la columna central del número. */
+    .card-middle {
+        display: contents;
+    }
+
+    .player-score {
+        grid-area: middle;
+        min-width: 0;
+        align-self: center;
+    }
+
+    .history-strip {
+        grid-area: history;
+    }
+
+    .throw-controls {
+        grid-area: controls;
+    }
+
+    /* .throw-stepper deja de ser una cajita con ▲/▼ apiladas: sus botones
+       pasan a ser hijos directos del flex de .throw-controls (display:
+       contents no altera el árbol DOM, así que :first-child/:last-child
+       siguen apuntando a ▲/▼ como siempre) para poder ponerlos a cada
+       lado del input de PUNTOS. */
+    .throw-stepper {
+        display: contents;
+    }
+
+    .throw-stepper-btn {
+        flex: 0 0 auto;
+        width: 15cqmin;
+        height: 15cqmin;
+        border: 1px solid;
+        border-radius: 1cqmin;
+        font-size: 6cqmin;
+    }
+
+    .throw-controls > .marker-icon-btn:first-child {
+        order: 1;
+    }
+
+    .throw-stepper-btn:last-child {
+        order: 2;
+    }
+
+    .throw-input {
+        order: 3;
+    }
+
+    .throw-stepper-btn:first-child {
+        order: 4;
+    }
+
+    .throw-controls > .marker-icon-btn:last-child {
+        order: 5;
+    }
 }

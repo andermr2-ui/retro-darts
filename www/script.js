@@ -601,7 +601,7 @@ function fitScoreText(scoreEl) {
     // saber cuánto ocupa el número tal cual se va a ver, hay que medirlo
     // con canvas.measureText en la tipografía real.
     const maxWidth = cardMiddle.clientWidth * 0.94;
-    const maxHeight = cardMiddle.clientHeight * 0.55;
+    const maxHeight = cardMiddle.clientHeight * 0.68;
     if (maxWidth <= 0 || maxHeight <= 0) return;
 
     const text = scoreEl.textContent;
@@ -621,11 +621,32 @@ function fitScoreText(scoreEl) {
     scoreEl.style.fontSize = `${lo}px`;
 }
 
+/** Nombres largos no pasan a una 2da línea: se comprimen horizontalmente
+    (scaleX) para entrar en una sola línea, en vez de agrandar la ficha o
+    achicar la altura de letra como hace fitScoreText con el puntaje. */
+function fitNameText(nameTextEl) {
+    if (!nameTextEl) return;
+    nameTextEl.style.transform = 'none';
+
+    const container = nameTextEl.parentElement;
+    const maxWidth = container.clientWidth * 0.96;
+    if (maxWidth <= 0) return;
+
+    const cs = getComputedStyle(nameTextEl);
+    _fitScoreCtx.font = `${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`;
+    const naturalWidth = _fitScoreCtx.measureText(nameTextEl.textContent).width;
+
+    if (naturalWidth > maxWidth) {
+        nameTextEl.style.transform = `scaleX(${maxWidth / naturalWidth})`;
+    }
+}
+
 let fitScoreResizeTimer = null;
 function refitAllScores() {
     clearTimeout(fitScoreResizeTimer);
     fitScoreResizeTimer = setTimeout(() => {
         document.querySelectorAll('.player-score').forEach(fitScoreText);
+        document.querySelectorAll('.player-name-text').forEach(fitNameText);
     }, 120);
 }
 
@@ -735,7 +756,7 @@ function renderPlayers() {
                 </div>
 
                 <div class="player-name" style="color: ${color};">
-                    ${escapeHTML(player.name)}
+                    <span class="player-name-text">${escapeHTML(player.name)}</span>
                 </div>
 
                 <div class="card-middle">
@@ -769,6 +790,7 @@ function renderPlayers() {
                     });
                 }
                 fitScoreText(card.querySelector('.player-score'));
+                fitNameText(card.querySelector('.player-name-text'));
             }, 0);
 
             playerIndex++;
@@ -792,14 +814,27 @@ function submitScore(playerId) {
     const input = document.getElementById(`input-${playerId}`);
     const points = parseFloat(input.value);
     if (isNaN(points) || points < 0) return;
+
+    const player = players.find(p => p.id === playerId);
+    if (!player) return;
+
+    const nextRound = player.history.length + 1;
+    const stuck = players.find(p => p.id !== playerId && nextRound - p.history.length > 1);
+    if (stuck) {
+        showAlert(`${player.name} no puede anotar la ronda ${nextRound} todavía: falta que ${stuck.name} juegue la ronda ${nextRound - 1}.`);
+        return;
+    }
+
     handleScore(playerId, points);
     checkRoundSync(playerId);
 }
 
-/** Si al anotar este jugador queda por delante de otros que todavía no
-    jugaron esa misma ronda (menos tiros acumulados), sus fichas parpadean
-    5 segundos para avisar que faltan por tirar. No bloquea nada — solo
-    avisa. */
+/** No se puede anotar una ronda si algún otro jugador todavía no jugó la
+    ronda anterior a esa — máximo 1 ronda de ventaja (ver submitScore).
+    Además, si al anotar este jugador queda por delante de otros que
+    todavía no jugaron esa misma ronda (menos tiros acumulados, pero
+    dentro del límite permitido), sus fichas parpadean 5 segundos para
+    avisar que faltan por tirar. No bloquea nada — solo avisa. */
 function checkRoundSync(scoredPlayerId) {
     const scorer = players.find(p => p.id === scoredPlayerId);
     if (!scorer) return;
