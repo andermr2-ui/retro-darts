@@ -12,6 +12,9 @@
     <div class="scanlines"></div>
     
     <div class="container">
+        <button id="btn-open-history" class="corner-btn corner-btn-left" title="Historial"></button>
+        <button id="btn-open-graph" class="corner-btn corner-btn-right" title="Ver gráfico de puntuación"></button>
+
         <header>
             <h1 class="neon-title" data-text="DARTS 420">DARTS 420</h1>
             <p class="subtitle">OBJETIVO: 420 EXACTOS</p>
@@ -19,38 +22,11 @@
         </header>
 
         <div class="toolbar">
-            <span class="round-indicator" id="round-indicator">RONDA 1</span>
-            <div class="header-actions">
-                <button id="btn-open-graph" class="retro-btn compact icon-btn" title="Ver gráfico de puntuación">👁</button>
-                <button id="btn-open-profiles" class="retro-btn compact">PERFILES</button>
-                <button id="btn-open-history" class="retro-btn compact">HISTORIAL</button>
-            </div>
-        </div>
-
-        <div class="controls">
-            <div class="add-mode-toggle">
-                <button id="btn-mode-guest" class="retro-btn compact mode-btn active">JUGADOR NUEVO</button>
-                <button id="btn-mode-library" class="retro-btn compact mode-btn">BIBLIOTECA</button>
-            </div>
-
-            <div id="guest-add-row" class="add-player-row">
-                <input type="text" id="new-player-name" placeholder="NUEVO JUGADOR..." autocomplete="off">
-                <button id="btn-add-player" class="retro-btn">AÑADIR</button>
-            </div>
-
-            <div id="library-picker-wrap" class="library-picker-wrap hidden">
-                <span class="library-label">ELEGÍ JUGADOR:</span>
-                <div id="library-picker" class="library-picker"></div>
-            </div>
-            <p id="library-empty-hint" class="empty-hint hidden">No hay perfiles guardados todavía — creá uno en PERFILES.</p>
+            <button id="btn-open-new-player" class="retro-btn">NUEVO JUGADOR</button>
         </div>
 
         <div id="players-container" class="players-grid">
             <!-- Players generated dynamically -->
-        </div>
-
-        <div class="turn-bar">
-            <button id="btn-advance-turn" class="retro-btn turn-btn">SIGUIENTE TURNO ▶</button>
         </div>
 
         <div id="winner-modal" class="modal hidden">
@@ -58,21 +34,56 @@
                 <h2 id="winner-text" class="neon-title winner-pulse"></h2>
                 <h3 class="winner-subtitle">¡Ha clavado el 420!</h3>
                 <div class="winner-actions">
-                    <button id="btn-next-round" class="retro-btn">SIGUIENTE RONDA</button>
                     <button id="btn-reset" class="retro-btn yellow">RESET</button>
                 </div>
+            </div>
+        </div>
+
+        <div id="new-player-modal" class="modal hidden">
+            <div class="modal-content">
+                <h2 id="new-player-modal-title" class="neon-title">JUGADOR NUEVO</h2>
+                <div class="new-player-form">
+                    <input type="text" id="new-player-name" placeholder="NOMBRE..." autocomplete="off">
+                    <button id="btn-random-name" class="btn-image-only" title="Nombre aleatorio de la biblioteca">
+                        <img src="icons/dice.png" width="33" height="28" alt="Aleatorio">
+                    </button>
+                </div>
+                <button id="btn-save-new-player" class="retro-btn btn-play">¡JUGAR!</button>
+                <div class="new-player-links">
+                    <button id="btn-open-library" class="retro-btn compact">BIBLIOTECA</button>
+                    <button id="btn-open-profiles" class="retro-btn compact">PERFILES</button>
+                </div>
+                <button id="btn-close-new-player" class="retro-btn compact yellow">CERRAR</button>
+            </div>
+        </div>
+
+        <div id="library-modal" class="modal hidden">
+            <div class="modal-content modal-content-wide">
+                <h2 class="neon-title">BIBLIOTECA DE MÚSICOS</h2>
+                <div class="library-toolbar">
+                    <input type="text" id="library-search" placeholder="BUSCAR MÚSICO..." autocomplete="off">
+                    <button id="btn-open-add-musician" class="retro-btn compact yellow btn-plus" title="Añadir músico nuevo">+</button>
+                </div>
+                <div id="library-musician-list" class="library-musician-list"></div>
+                <button id="btn-close-library" class="retro-btn compact yellow">CERRAR</button>
+            </div>
+        </div>
+
+        <div id="add-musician-modal" class="modal hidden">
+            <div class="modal-content">
+                <h2 class="neon-title">MÚSICO NUEVO</h2>
+                <input type="text" id="new-musician-name" placeholder="NOMBRE DEL MÚSICO..." autocomplete="off">
+                <select id="new-musician-role"></select>
+                <button id="btn-save-musician" class="retro-btn compact">GUARDAR MÚSICO</button>
+                <button id="btn-close-add-musician" class="retro-btn compact yellow">CERRAR</button>
             </div>
         </div>
 
         <div id="profiles-modal" class="modal hidden">
             <div class="modal-content modal-content-wide">
                 <h2 class="neon-title">PERFILES</h2>
+                <p class="modal-hint">Solo jugadores con nombre personalizado. Tocá un perfil para sumarlo a la partida.</p>
                 <div id="profiles-list" class="profiles-list"></div>
-                <div class="profile-form">
-                    <input type="text" id="new-profile-name" placeholder="NOMBRE DEL PERFIL..." autocomplete="off">
-                    <select id="new-profile-skin"></select>
-                    <button id="btn-add-profile" class="retro-btn compact">GUARDAR PERFIL</button>
-                </div>
                 <button id="btn-close-profiles" class="retro-btn compact yellow">CERRAR</button>
             </div>
         </div>
@@ -87,14 +98,74 @@
 
         <div id="graph-modal" class="modal hidden">
             <div class="modal-content modal-content-graph">
+                <button id="btn-close-graph" class="modal-close-x" title="Cerrar">X</button>
                 <h2 class="neon-title">PUNTUACIÓN</h2>
                 <canvas id="score-canvas" class="score-canvas"></canvas>
                 <div id="graph-legend" class="graph-legend"></div>
-                <button id="btn-close-graph" class="retro-btn compact yellow">CERRAR</button>
+            </div>
+        </div>
+
+        <div id="skin-modal" class="modal hidden">
+            <div class="modal-content modal-content-wide">
+                <h2 class="neon-title">APARIENCIA</h2>
+                <div class="skin-section">
+                    <span class="skin-section-label">COLOR PERSONALIZADO</span>
+                    <div class="skin-color-row">
+                        <input type="color" id="skin-color-input" value="#00ffff">
+                        <button id="btn-save-skin-color" class="retro-btn compact">USAR COLOR</button>
+                    </div>
+                </div>
+                <div class="skin-section">
+                    <span class="skin-section-label">FOTO</span>
+                    <div class="skin-photo-row">
+                        <button id="btn-upload-photo" class="retro-btn compact">SUBIR DESDE PC</button>
+                        <input type="file" id="skin-file-input" accept="image/*" class="hidden-file-input">
+                        <button id="btn-open-webcam" class="retro-btn compact">USAR CÁMARA</button>
+                    </div>
+                    <div id="skin-photo-preview-wrap" class="skin-photo-preview-wrap hidden">
+                        <img id="skin-photo-preview" class="skin-photo-preview" alt="Vista previa">
+                        <button id="btn-clear-photo" class="retro-btn compact yellow">QUITAR FOTO</button>
+                    </div>
+                    <div id="skin-webcam-wrap" class="skin-webcam-wrap hidden">
+                        <video id="skin-webcam-video" autoplay playsinline></video>
+                        <canvas id="skin-webcam-canvas" class="hidden"></canvas>
+                        <div class="skin-webcam-actions">
+                            <button id="btn-capture-webcam" class="retro-btn compact">CAPTURAR</button>
+                            <button id="btn-close-webcam" class="retro-btn compact yellow">CANCELAR</button>
+                        </div>
+                    </div>
+                </div>
+                <button id="btn-close-skin" class="retro-btn compact yellow">CERRAR</button>
+            </div>
+        </div>
+
+        <div id="rename-modal" class="modal hidden">
+            <div class="modal-content">
+                <h2 class="neon-title">RENOMBRAR</h2>
+                <input type="text" id="rename-input" autocomplete="off">
+                <button id="btn-save-rename" class="retro-btn">GUARDAR</button>
+                <button id="btn-close-rename" class="retro-btn compact yellow">CERRAR</button>
+            </div>
+        </div>
+
+        <div id="confirm-modal" class="modal hidden">
+            <div class="modal-content">
+                <p id="confirm-message" class="modal-message"></p>
+                <div class="winner-actions">
+                    <button id="btn-confirm-yes" class="retro-btn">SÍ</button>
+                    <button id="btn-confirm-no" class="retro-btn yellow">NO</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="alert-modal" class="modal hidden">
+            <div class="modal-content">
+                <p id="alert-message" class="modal-message"></p>
+                <button id="btn-alert-ok" class="retro-btn">OK</button>
             </div>
         </div>
     </div>
-    <script src="store.js"></script>
-    <script src="script.js"></script>
+    <script src="store.js?v=2"></script>
+    <script src="script.js?v=2"></script>
 </body>
 </html>

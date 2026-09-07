@@ -1,53 +1,219 @@
-const artistNames = ["Elvis Presley","Chuck Berry","Little Richard","Jerry Lee Lewis","Buddy Holly","Fats Domino","Bo Diddley","Carl Perkins","Gene Vincent","Eddie Cochran","Ritchie Valens","Bill Haley","Big Joe Turner","Wynonie Harris","Roy Brown","Jackie Wilson","LaVern Baker","Ruth Brown","Wanda Jackson","Connie Francis","Brenda Lee","Dale Hawkins","Ronnie Hawkins","Duane Eddy","Link Wray","Dick Dale","Screamin' Jay Hawkins","Johnny Burnette","Paul Burlison","Dorsey Burnette","Eddie Fontaine","Charlie Feathers","Warren Smith","Sonny Burgess","Billy Lee Riley","Jerry McCain","Sleepy LaBeef","Ronnie Self","Gene Summers","Janis Martin","Sparkle Moore","Lorrie Collins","Rose Maddox","Eddie Bond","Johnny Carroll","Jack Scott","Bobby Vee","Del Shannon","Roy Orbison","Don Everly","Phil Everly","Buddy Knox","Jimmy Bowen","Ricky Nelson","Johnny Cash","Hank Williams","Hank Snow","Marty Robbins","Johnny Horton","Carl Smith","Conway Twitty","Charlie Rich","Jerry Reed","Chet Atkins","Scotty Moore","D.J. Fontana","Bill Black","James Burton","Glen Campbell","Les Paul","Mary Ford","Muddy Waters","Howlin' Wolf","Robert Johnson","Son House","Charley Patton","Willie Brown","Tommy Johnson","Skip James","Bukka White","Mississippi John Hurt","Blind Lemon Jefferson","Blind Blake","Blind Willie McTell","Blind Willie Johnson","Lonnie Johnson","Tampa Red","Big Bill Broonzy","Memphis Minnie","Elizabeth Cotten","Lead Belly","Brownie McGhee","Sonny Terry","Reverend Gary Davis","Josh White","Big Joe Williams","Peetie Wheatstraw","Kokomo Arnold","Arthur Big Boy Crudup","Tommy McClennan","Robert Nighthawk","Elmore James","T-Bone Walker","Lightnin' Hopkins","John Lee Hooker","Jimmy Reed","Willie Dixon","Little Walter","Sonny Boy Williamson","Sonny Boy Williamson II","Big Walter Horton","Carey Bell","Eddie Taylor","Otis Spann","Pinetop Perkins","Willie Johnson","Magic Sam","Buddy Guy","Junior Wells","Koko Taylor","Etta James","B.B. King","Albert King","Freddie King","Albert Collins","Clarence Gatemouth Brown","Bobby Bland","Percy Mayfield","Jimmy Witherspoon","Big Mama Thornton","Sister Rosetta Tharpe","Ma Rainey","Bessie Smith","Mamie Smith","Victoria Spivey","Ida Cox","Alberta Hunter","Sippie Wallace","Dinah Washington","Billie Holiday","Louis Jordan","Ray Charles","Clyde McPhatter","Sam Cooke","Wilson Pickett","Solomon Burke","Otis Redding","James Brown","Aretha Franklin","Marvin Gaye","Curtis Mayfield","Isaac Hayes","Booker T. Jones","Steve Cropper","Al Jackson Jr.","Donald Duck Dunn","Earl Palmer","Hal Blaine","James Jamerson","Carol Kaye","King Curtis","Jimi Hendrix","Janis Joplin","Eric Clapton","Jeff Beck","Jimmy Page","Peter Green","John Mayall","Mick Taylor","Gary Moore","Rory Gallagher","Stevie Ray Vaughan","Johnny Winter","Taj Mahal","Ry Cooder","Bonnie Raitt","John Hammond Jr.","Charlie Musselwhite","Paul Butterfield","Mike Bloomfield","Elvin Bishop","Johnny Shines","Hubert Sumlin","David Honeyboy Edwards","Sonny Landreth","Keb' Mo'","Robert Cray","Joe Bonamassa","Derek Trucks","Susan Tedeschi","Chris Thomas King","Gary Clark Jr.","Kirk Fletcher","Christone Kingfish Ingram","Samantha Fish","Ruthie Foster","Marcia Ball","Shemekia Copeland","Nina Simone","Professor Longhair","Dr. John","Allen Toussaint","Huey Piano Smith","Amos Milburn","Champion Jack Dupree","James Booker","Clarence Frogman Henry","Earl King","Smiley Lewis","Lloyd Price","Frankie Ford","Irma Thomas","Lee Dorsey","Aaron Neville","Art Neville","Cyril Neville","Neil Sedaka","Neil Diamond","Roy Head","Tommy Roe","Bobby Darin","Dion","Frankie Lymon","Ben E. King","Smokey Robinson","Stevie Wonder","Percy Sledge","Arthur Alexander","Dan Penn","Spooner Oldham","Jerry Butler","Louis Armstrong","Duke Ellington","Count Basie","Cab Calloway","Fletcher Henderson","Jelly Roll Morton","King Oliver","Sidney Bechet","Bix Beiderbecke","Django Reinhardt","Stephane Grappelli","Charlie Christian","Earl Hines","Fats Waller","Art Tatum","Teddy Wilson","Thelonious Monk","Dizzy Gillespie","Charlie Parker","Miles Davis","John Coltrane","Charles Mingus","Bud Powell","Bill Evans","Oscar Peterson","Erroll Garner","Dave Brubeck","Chet Baker","Gerry Mulligan","Stan Getz","Lester Young","Coleman Hawkins","Ben Webster","Dexter Gordon","Sonny Rollins","Art Blakey","Max Roach","Clifford Brown","Roy Eldridge","Freddie Hubbard","Lee Morgan","Donald Byrd","Wayne Shorter","Herbie Hancock","Chick Corea","Keith Jarrett","McCoy Tyner","Cannonball Adderley","Wynton Marsalis","Branford Marsalis","Pat Metheny","George Benson","Wes Montgomery","Grant Green","Jim Hall","Joe Pass","John Scofield","Larry Carlton","Al Di Meola","Ralph Towner","Alice Coltrane","Sun Ra","Ornette Coleman","Cecil Taylor","Pharoah Sanders","Albert Ayler","Eric Dolphy","Don Cherry","Anthony Braxton","Charles Lloyd","Joe Zawinul","David Ruffin","Levi Stubbs","Gladys Knight","Diana Ross","Tina Turner","Mavis Staples","Marlena Shaw","Roberta Flack","Bill Withers","Donny Hathaway","Bobby Womack","Al Green","Sly Stone","George Clinton","Bootsy Collins","Larry Graham","Rick James","Prince","Quincy Jones","Ella Fitzgerald","Sarah Vaughan","Carmen McRae","Betty Carter","Shirley Horn","Abbey Lincoln","Cassandra Wilson","Dianne Reeves","Anita O'Day","Peggy Lee","Julie London","Helen Merrill","Chris Connor","June Christy","Annie Ross","Dinah Shore","Etta Jones","Dakota Staton","Billie Eckstine","Johnny Hartman","Jimmy Rushing","Joe Williams","Nat King Cole","Sammy Davis Jr.","Tony Bennett","Frank Sinatra","Dean Martin","Bing Crosby","Louis Prima","Mel Tormé","Harry Connick Jr.","Al Jarreau","Bobby McFerrin","Jon Hendricks","George Shearing","Ahmad Jamal","Horace Silver","Sonny Clark","Hank Mobley","Art Farmer","Art Pepper","Paul Desmond","Zoot Sims","Wardell Gray","Lennie Tristano","Lee Konitz","Warne Marsh","Charles McPherson","Sonny Stitt","Johnny Griffin","Hank Jones","Thad Jones","Elvin Jones","Roy Haynes","Philly Joe Jones","Tony Williams","Jack DeJohnette","Billy Higgins","Shelly Manne","Gene Krupa","Buddy Rich","Chick Webb","Papa Jo Jones","Ray Brown","Paul Chambers","Ron Carter","Milt Hinton","Jimmy Garrison","Percy Heath","Oscar Pettiford","Dave Holland","Jaco Pastorius","Eddie Gomez","Niels-Henning Ørsted Pedersen","Scott LaFaro","Charlie Haden","Esperanza Spalding","Marcus Miller","Victor Wooten","Jim Morrison","Ray Manzarek","Robby Krieger","John Densmore","Robert Plant","John Paul Jones","John Bonham","Mick Jagger","Keith Richards","Brian Jones","Charlie Watts","Bill Wyman","Ronnie Wood","David Bowie","Freddie Mercury","Brian May","Roger Taylor","John Deacon","Pete Townshend","Roger Daltrey","John Entwistle","Keith Moon","Ronnie Van Zant","Duane Allman","Gregg Allman","Dickey Betts","Berry Oakley","Neil Young","Stephen Stills","David Crosby","Graham Nash","Joni Mitchell","Bob Dylan","Joan Baez","Bruce Springsteen","Clarence Clemons","Steven Van Zandt","Tom Petty","Mike Campbell","Benmont Tench","George Harrison","John Lennon","Paul McCartney","Ringo Starr","Pete Best","Brian Epstein","George Martin","Patti Smith","Lou Reed","John Cale","Iggy Pop","David Byrne","Tom Verlaine","Richard Hell","Joey Ramone","Johnny Ramone","Dee Dee Ramone","Marky Ramone","Joe Strummer","Mick Jones","Paul Simonon","Topper Headon","Johnny Rotten","Sid Vicious","Steve Jones","Paul Cook","Glen Matlock","Siouxsie Sioux","Robert Smith","Ian Curtis","Bernard Sumner","Peter Hook","Stephen Morris","Morrissey","Johnny Marr","Nick Cave","Blixa Bargeld","PJ Harvey","Thurston Moore","Kim Gordon","Lee Ranaldo","Kurt Cobain","Krist Novoselic","Dave Grohl","Eddie Vedder","Chris Cornell","Layne Staley","Jerry Cantrell","Scott Weiland","Billy Corgan","Courtney Love","Shirley Manson","Trent Reznor","Marilyn Manson","Maynard James Keenan","Billy Idol","Joan Jett","Lita Ford","Debbie Harry","Chrissie Hynde","Pat Benatar","Neil Giraldo","Suzi Quatro","Alice Cooper","Steven Tyler","Joe Perry","Tom Hamilton","Joey Kramer","Brad Whitford","Gene Simmons","Paul Stanley","Ace Frehley","Peter Criss","Eddie Van Halen","Alex Van Halen","David Lee Roth","Sammy Hagar","Michael Anthony","Ozzy Osbourne","Tony Iommi","Geezer Butler","Bill Ward","Ronnie James Dio","Rob Halford","Glenn Tipton","K.K. Downing","Ian Hill","Bruce Dickinson","Steve Harris","Adrian Smith","Dave Murray","Cliff Burton","Kirk Hammett","James Hetfield","Lars Ulrich","Lemmy Kilmister","Fast Eddie Clarke","Philthy Animal Taylor","Dave Mustaine","Marty Friedman","Kerry King","Jeff Hanneman","Tom Araya","Dimebag Darrell","Vinnie Paul","Phil Anselmo","Max Cavalera","Igor Cavalera","Serj Tankian","Daron Malakian","Jonathan Davis","Corey Taylor","Zakk Wylde","Slash","Duff McKagan","Axl Rose","Izzy Stradlin","Steven Adler","Matt Sorum","Mick Mars","Vince Neil","Nikki Sixx","Tommy Lee","Bret Michaels","Rikki Rockett","C.C. DeVille","Sebastian Bach","Dee Snider","Brian Johnson","Angus Young","Malcolm Young","Cliff Williams","Phil Rudd","Bon Scott","Mutt Lange","Peter Gabriel","Phil Collins","Steve Hackett","Tony Banks","Mike Rutherford","Peter Frampton","Steve Winwood","Robert Fripp","Greg Lake","Carl Palmer","Keith Emerson","Rick Wakeman","Jon Anderson","Chris Squire","Bill Bruford","Steve Howe","Ian Anderson","David Gilmour","Roger Waters","Nick Mason","Richard Wright","Syd Barrett","Mike Oldfield","Sting","Andy Summers","Stewart Copeland","Elvis Costello","Joe Jackson","Bryan Ferry","Brian Eno","Mark Knopfler","David Knopfler","Eric Burdon","Van Morrison","Rod Stewart","Mick Fleetwood","John McVie","Christine McVie","Stevie Nicks","Lindsey Buckingham","Carlos Santana","Gregg Rolie","Neal Schon","Steve Perry","Steve Miller","Joe Walsh","Don Henley","Glenn Frey","Joe Elliott","Phil Collen","Rick Savage","Steve Clark","Jeff Lynne","Roy Wood","Eric Idle","Ray Davies","Dave Davies","Brian Wilson","Carl Wilson","Dennis Wilson","Mike Love","Al Jardine","Elton John","Bernie Taupin","Billy Joel","Tom Waits","Nick Drake","Leonard Cohen","Randy Newman","Warren Zevon","John Mellencamp","Bob Seger","Meat Loaf","Jim Steinman","Bryan Adams","Lenny Kravitz","Sheryl Crow","Alanis Morissette","Flea","Anthony Kiedis","John Frusciante","Chad Smith","Josh Homme","Dave Navarro","Jack White","Meg White","Karen O","Julian Casablancas","Alex Turner","Noel Gallagher","Liam Gallagher","Damon Albarn","Graham Coxon","Jarvis Cocker","Richard Ashcroft","Thom Yorke","Jonny Greenwood","Colin Greenwood","Ed O'Brien","Phil Selway","Chris Martin","Jon Buckland","Guy Berryman","Will Champion","Brandon Flowers","The Edge","Bono","Adam Clayton","Larry Mullen Jr.","Kate Bush","Tori Amos","Fiona Apple","St. Vincent","Courtney Barnett","Dan Auerbach","Patrick Carney","Perry Farrell","Stone Gossard","Mike McCready","Matt Cameron","Taylor Hawkins","Mark Lanegan","Andrew Wood","Jeff Buckley","Michael Stipe","Peter Buck","Mike Mills","Bill Berry","James Iha","Jimmy Chamberlin","Beck Hansen","Dave Matthews","Chris Robinson","Rich Robinson","Ryan Adams","Steven Wilson","Mikael Åkerfeldt","Tom Morello","Zack de la Rocha","Tim Commerford","Brad Wilk","Litto Nebbia","Moris","Javier Martínez","Miguel Abuelo","Tanguito","Edelmiro Molinari","David Lebón","Pedro Aznar","Fito Páez","León Gieco","Juan Carlos Baglietto","Alejandro Lerner","Vicentico","Flavio Cianciarulo","Gustavo Cerati","Zeta Bosio","Charly Alberti","Andrés Calamaro","Javier Calamaro","Héctor Starc","Oscar Moro","Oscar López","Ricardo Mollo","Diego Arnedo","Luca Prodan","Germán Daffunchio","Skay Beilinson","Indio Solari","Willy Crook","Ciro Martínez","Juanse","Pity Álvarez","Walter Giardino","Adrián Barilari","Ricardo Iorio","Claudio O'Connor","Norberto Pappo Napolitano","Hilda Lizarazu","Fabiana Cantilo","Celeste Carballo","María Gabriela Epumer","Sandra Mihanovich","Claudia Puyó","Gabriel Carámbula","Daniel Melero","Richard Coleman","Gustavo Santaolalla","Marciano Cantero","Felipe Staiti","Miguel Mateos","Chizzo Nápoli","Manuel Quieto","Jorge Serrano","Ciro Pertusi","Alejandro Medina","Claudio Gabis","Billy Bond","Luis Alberto Spinetta","Nito Mestre","Charly García","Ariel Rot","Joaquín Sabina","Manolo García","Quimi Portet","Antonio Vega","Nacho García Vega","Enrique Urquijo","Álvaro Urquijo","Jorge Ilegal","Rosendo Mercado","Raimundo Amador","Rafaelillo Amador","Kiko Veneno","Silvio Fernández","Silvio Rodríguez","Joan Manuel Serrat","Pau Donés","Enrique Bunbury","Juan Valdivia","Joaquín Cardiel","Pedro Andreu","José María Sanz","Jordi Vila","Sabino Méndez","Ramoncín","Miguel Ríos","Víctor Manuel","Ana Belén","Camarón de la Isla","Paco de Lucía","Antonio Carmona","Juan Carmona","Ray Heredia","Mikel Erentxun","Diego Vasallo","Dani Martín","Leiva","Rubén Pozo","Iván Ferreiro","Amaro Ferreiro","Xoel López","Enrique Sierra","Rafa Gutiérrez","Manolo UVI","Javier Andreu","Luis Auserón","Santiago Auserón","Javier Gurruchaga","Alaska","Nacho Canut","Carlos Berlanga","Ana Curra","Eduardo Benavente","Antonio Flores","Rosario Flores","Fito Cabrales","Iñaki Antón","Robe Iniesta","Kutxi Romero","Fernando Madina","Evaristo Páramos","César Strawberry","Javier Ojeda","Rafa Sánchez","Luis Bolín","Johnny Cifuentes","José Casas","Julio Castejón","Armando de Castro","Carlos de Castro","José Luis Campuzano","Hermes Calabria","Fortu Sánchez","Jorge Escobedo","Carlos Escobedo","Alberto Cereijo","Doro Pesch","Javier Vargas","Manolo Tena","Jorge Pardo","Carles Benavent","Rubem Dantas","Omar Rodríguez-López","Cedric Bixler-Zavala","Saúl Hernández","Alejandro Marcovich","Andrea Echeverri","Héctor Buitrago","Shakira","Manu Chao","Rubén Albarrán","Jorge González","Álvaro Henríquez","Javiera Parra","Andrés Bobe","Beto Cuevas","Prince Buster","Desmond Dekker","Toots Hibbert","Laurel Aitken","Alton Ellis","Ken Boothe","Phyllis Dillon","Delroy Wilson","Bob Marley","Peter Tosh","Burning Spear","Dennis Brown","Gregory Isaacs","Marcia Griffiths","King Tubby","Lee Scratch Perry","Scientist","Augustus Pablo","Mad Professor","Yellowman","Super Cat","Shabba Ranks","Buju Banton","Beenie Man","Bounty Killer","Sister Nancy","Kase.O","Nach","ToteKing","Mala Rodríguez","Elphomega","C. Tangana","Natos","Waor","Dano","Hard GZ","Rapsusklei","Canserbero","Residente","Akapellah","Lil Supa","Apache","Alemán","Santa Fe Klan","Duki","Wos","Tego Calderón","Vico C","Nathy Peluso","Ana Tijoux","Portavoz","Al2 El Aldeano","Chaka Khan","Maceo Parker","Fred Wesley","Michael Jackson","Whitney Houston","Anita Baker","Luther Vandross","D'Angelo","Erykah Badu","Lauryn Hill","Maxwell","Frank Ocean","SZA","Usher","Alicia Keys","Bruno Mars","Anderson .Paak","Enrique Morente","Carmen Amaya","La Niña de los Peines","Jose Mercé","Diego el Cigala","Tomatito","Lole Montoya","Estrella Morente","Miguel Poveda","Serafín Zubiri","Peret","Gato Pérez","El Pescaílla","Junco","Tijeritas","Jeros","El Fary","Lola Flores","Rocío Jurado","Concha Piquer","Juanita Reina","Marifé de Triana","Carlos Cano","Isabel Pantoja","Manolo Escobar","Antonio Molina","Juanito Valderrama"];
+/** ---- íconos dibujados a mano ----
+    PNG en blanco y negro (32x32), procesados a blanco=transparente para
+    poder aplicarlos como máscara CSS (ver .icon-mask) — así cada botón los
+    sigue coloreando con el color del jugador, sin tener un color horneado
+    en el archivo. */
+function iconMask(file) {
+    const url = `icons/${file}.png`;
+    return `<span class="icon-mask" style="-webkit-mask-image:url('${url}'); mask-image:url('${url}');"></span>`;
+}
+
+/** Músicos agrupados por instrumento/rol, cargados desde musicians.json
+    (fuente editable: retro-darts/retrodarts_musician_list.json). Se usa
+    tanto para el fallback de nombre random al añadir un jugador manual,
+    como para armar la banda aleatoria al abrir la app (ver formRandomBand). */
+let MUSICIAN_ROLES = null;
+let ROLE_POOLS = null;
+let ALL_MUSICIANS = [];
+
+async function loadMusicianData() {
+    const res = await fetch('musicians.json');
+    MUSICIAN_ROLES = await res.json();
+
+    /** Roles usados para armar bandas lógicas (ver BAND_TEMPLATES). "viento"
+        fusiona metal + madera + cuerda frotada porque son categorías chicas
+        y cumplen el mismo papel de instrumento melódico secundario. */
+    ROLE_POOLS = {
+        vocal: MUSICIAN_ROLES.cantantes_frontmen,
+        rap: MUSICIAN_ROLES.raperos,
+        guitarra: MUSICIAN_ROLES.guitarras,
+        bajo: MUSICIAN_ROLES.bajistas,
+        teclado: MUSICIAN_ROLES.teclados_pianos,
+        bateria: MUSICIAN_ROLES.percusion_baterias,
+        viento: [...MUSICIAN_ROLES.viento_metal, ...MUSICIAN_ROLES.viento_madera, ...MUSICIAN_ROLES.cuerda_frotada],
+        dj: MUSICIAN_ROLES.productores_djs,
+    };
+    ALL_MUSICIANS = Object.values(MUSICIAN_ROLES).flat();
+}
+
+/** Etiquetas legibles de cada categoría, usadas en el selector del popup
+    "MÚSICO NUEVO" de la biblioteca. */
+const ROLE_LABELS = {
+    guitarras: 'Guitarra',
+    bajistas: 'Bajo',
+    cuerda_frotada: 'Cuerda frotada',
+    teclados_pianos: 'Teclado / Piano',
+    viento_metal: 'Viento (metal)',
+    viento_madera: 'Viento (madera)',
+    percusion_baterias: 'Batería / Percusión',
+    cantantes_frontmen: 'Voz / Frontman',
+    raperos: 'Rap',
+    productores_djs: 'Productor / DJ',
+};
+
+/** Suma un músico (de la biblioteca personalizada guardada) a las
+    estructuras en memoria, sin tener que recargar la página. */
+function addMusicianToRuntime(name, role) {
+    if (!MUSICIAN_ROLES[role]) return;
+    MUSICIAN_ROLES[role].push(name);
+    if (role === 'viento_metal' || role === 'viento_madera' || role === 'cuerda_frotada') {
+        ROLE_POOLS.viento.push(name);
+    }
+    ALL_MUSICIANS.push(name);
+}
+
+function mergeCustomMusicians() {
+    Store.data.customMusicians.forEach(m => addMusicianToRuntime(m.name, m.role));
+}
+
+/** Limpieza única: antes de este cambio, cualquier nombre (incluidos los de
+    la banda aleatoria) generaba un perfil. Saca esos perfiles-músico
+    huérfanos, siempre que nunca hayan acumulado partidas jugadas. */
+function pruneMusicianProfiles() {
+    const before = Store.data.profiles.length;
+    Store.data.profiles = Store.data.profiles.filter(p =>
+        !(isKnownMusicianName(p.name) && p.stats.legsPlayed === 0 && p.stats.matchesWon === 0));
+    if (Store.data.profiles.length !== before) Store.save();
+}
+
+/** Un jugador cuyo nombre coincide con alguien de la biblioteca de músicos
+    (de fábrica o añadido a mano) no genera un perfil propio — los perfiles
+    son solo para nombres personalizados (ver addPlayer). */
+function isKnownMusicianName(name) {
+    const lower = (name || '').trim().toLowerCase();
+    return ALL_MUSICIANS.some(m => m.toLowerCase() === lower);
+}
+
+/** Búsqueda de YouTube del repertorio del músico — el jugador elige qué
+    tema poner de los resultados, la app solo arma la búsqueda por nombre. */
+function buildYoutubeSearchUrl(name) {
+    const words = name.trim().split(/\s+/).map(w => encodeURIComponent(w));
+    return `https://www.youtube.com/results?search_query=${words.join('+')}`;
+}
+
+/** Dentro de la app de escritorio (Tauri), un <a target="_blank"> normal
+    navega la MISMA ventana en vez de abrir el navegador del sistema (se
+    perdería la partida en curso) — hay que pedírselo explícitamente al
+    plugin "opener". En el navegador normal (esta preview incluida) no hace
+    falta: window.__TAURI__ no existe y el link se abre solo, como siempre. */
+function openExternal(url) {
+    if (window.__TAURI__ && window.__TAURI__.opener) {
+        window.__TAURI__.opener.open(url);
+        return false;
+    }
+    return true;
+}
+window.openExternal = openExternal;
+
+/** Formaciones de banda plausibles por cantidad de integrantes. Cada una es
+    una lista de roles (no de personas) — evita absurdos como 3 guitarristas
+    o 2 cantantes sin bajista. */
+const BAND_TEMPLATES = {
+  3: [
+    ['vocal', 'guitarra', 'bateria'],
+    ['guitarra', 'bajo', 'bateria'],
+    ['vocal', 'guitarra', 'bajo'],
+    ['vocal', 'teclado', 'bateria'],
+    ['rap', 'dj', 'bateria'],
+  ],
+  4: [
+    ['vocal', 'guitarra', 'bajo', 'bateria'],
+    ['guitarra', 'guitarra', 'bajo', 'bateria'],
+    ['vocal', 'teclado', 'bajo', 'bateria'],
+    ['vocal', 'guitarra', 'teclado', 'bateria'],
+    ['rap', 'dj', 'bajo', 'bateria'],
+  ],
+  5: [
+    ['vocal', 'guitarra', 'guitarra', 'bajo', 'bateria'],
+    ['vocal', 'guitarra', 'bajo', 'bateria', 'teclado'],
+    ['vocal', 'guitarra', 'bajo', 'bateria', 'viento'],
+    ['vocal', 'guitarra', 'teclado', 'bajo', 'bateria'],
+    ['rap', 'dj', 'guitarra', 'bajo', 'bateria'],
+  ],
+};
+
 const usedNamesInSession = new Set();
 
 function getRandomArtistName() {
-    const available = artistNames.filter(n => !usedNamesInSession.has(n));
-    const pool = available.length > 0 ? available : artistNames;
+    const available = ALL_MUSICIANS.filter(n => !usedNamesInSession.has(n));
+    const pool = available.length > 0 ? available : ALL_MUSICIANS;
     const name = pool[Math.floor(Math.random() * pool.length)];
     usedNamesInSession.add(name);
     return name;
 }
 
+/** Elige un músico del rol dado, evitando repetir nombres ya usados en esta
+    banda/sesión mientras el pool lo permita. */
+function pickMusicianForRole(role, excludeNames) {
+    const pool = ROLE_POOLS[role].filter(n => !excludeNames.has(n));
+    const source = pool.length > 0 ? pool : ROLE_POOLS[role];
+    const name = source[Math.floor(Math.random() * source.length)];
+    excludeNames.add(name);
+    usedNamesInSession.add(name);
+    return name;
+}
+
+/** Arma una banda aleatoria de 3 a 5 músicos, como si se hubieran conocido
+    en una jam y el anfitrión los agrupara por instrumento: elige una
+    formación lógica (BAND_TEMPLATES) y completa cada rol con un músico
+    random de esa categoría. */
+function formRandomBand() {
+    const size = 3 + Math.floor(Math.random() * 3); // 3, 4 o 5
+    const templates = BAND_TEMPLATES[size];
+    const roles = templates[Math.floor(Math.random() * templates.length)];
+    const usedInBand = new Set();
+    return roles.map(role => pickMusicianForRole(role, usedInBand));
+}
+
 let players = [];
 let colorIndex = 0;
-let legNumber = 1;
-let legWins = {}; // playerId -> mangas ganadas en la partida en curso
 let winnerPlayerId = null;
-let currentMatchId = null; // agrupa las mangas de la partida en curso para el gráfico
+let currentMatchId = null;
 const TARGET_SCORE = 420;
 
-let addPlayerMode = 'guest';
+/** playerId que se está editando desde el popup JUGADOR NUEVO (null = modo
+    alta de jugador nuevo). */
+let editingPlayerId = null;
+/** { type: 'player'|'profile', id } — a quién se le aplica el cambio hecho
+    en el popup APARIENCIA. */
+let skinTarget = null;
+let webcamStream = null;
+const AVATAR_SIZE = 160;
 
 const playersContainer = document.getElementById('players-container');
-const inputNewPlayer = document.getElementById('new-player-name');
-const btnAddPlayer = document.getElementById('btn-add-player');
-const guestAddRow = document.getElementById('guest-add-row');
-const btnModeGuest = document.getElementById('btn-mode-guest');
-const btnModeLibrary = document.getElementById('btn-mode-library');
-const libraryPickerWrap = document.getElementById('library-picker-wrap');
-const libraryPicker = document.getElementById('library-picker');
-const libraryEmptyHint = document.getElementById('library-empty-hint');
-const roundIndicator = document.getElementById('round-indicator');
 const winnerModal = document.getElementById('winner-modal');
 const winnerText = document.getElementById('winner-text');
-const btnNextRound = document.getElementById('btn-next-round');
 const btnReset = document.getElementById('btn-reset');
+
+const btnOpenNewPlayer = document.getElementById('btn-open-new-player');
+const btnCloseNewPlayer = document.getElementById('btn-close-new-player');
+const newPlayerModal = document.getElementById('new-player-modal');
+const newPlayerNameInput = document.getElementById('new-player-name');
+const btnRandomName = document.getElementById('btn-random-name');
+const btnSaveNewPlayer = document.getElementById('btn-save-new-player');
+
+const btnOpenLibrary = document.getElementById('btn-open-library');
+const btnCloseLibrary = document.getElementById('btn-close-library');
+const libraryModal = document.getElementById('library-modal');
+const librarySearchInput = document.getElementById('library-search');
+const libraryMusicianList = document.getElementById('library-musician-list');
+const btnOpenAddMusician = document.getElementById('btn-open-add-musician');
+
+const btnCloseAddMusician = document.getElementById('btn-close-add-musician');
+const addMusicianModal = document.getElementById('add-musician-modal');
+const newMusicianNameInput = document.getElementById('new-musician-name');
+const newMusicianRoleSelect = document.getElementById('new-musician-role');
+const btnSaveMusician = document.getElementById('btn-save-musician');
 
 const btnOpenProfiles = document.getElementById('btn-open-profiles');
 const btnCloseProfiles = document.getElementById('btn-close-profiles');
 const profilesModal = document.getElementById('profiles-modal');
 const profilesList = document.getElementById('profiles-list');
-const newProfileName = document.getElementById('new-profile-name');
-const newProfileSkin = document.getElementById('new-profile-skin');
-const btnAddProfile = document.getElementById('btn-add-profile');
 
 const btnOpenHistory = document.getElementById('btn-open-history');
 const btnCloseHistory = document.getElementById('btn-close-history');
 const historyModal = document.getElementById('history-modal');
 const historyList = document.getElementById('history-list');
-
-const btnAdvanceTurn = document.getElementById('btn-advance-turn');
 
 const btnOpenGraph = document.getElementById('btn-open-graph');
 const btnCloseGraph = document.getElementById('btn-close-graph');
@@ -55,58 +221,118 @@ const graphModal = document.getElementById('graph-modal');
 const scoreCanvas = document.getElementById('score-canvas');
 const graphLegend = document.getElementById('graph-legend');
 
+const skinModal = document.getElementById('skin-modal');
+const btnCloseSkin = document.getElementById('btn-close-skin');
+const skinColorInput = document.getElementById('skin-color-input');
+const btnSaveSkinColor = document.getElementById('btn-save-skin-color');
+const btnUploadPhoto = document.getElementById('btn-upload-photo');
+const skinFileInput = document.getElementById('skin-file-input');
+const btnOpenWebcam = document.getElementById('btn-open-webcam');
+const btnCloseWebcam = document.getElementById('btn-close-webcam');
+const btnCaptureWebcam = document.getElementById('btn-capture-webcam');
+const skinWebcamWrap = document.getElementById('skin-webcam-wrap');
+const skinWebcamVideo = document.getElementById('skin-webcam-video');
+const skinWebcamCanvas = document.getElementById('skin-webcam-canvas');
+const skinPhotoPreviewWrap = document.getElementById('skin-photo-preview-wrap');
+const skinPhotoPreview = document.getElementById('skin-photo-preview');
+const btnClearPhoto = document.getElementById('btn-clear-photo');
+
+const renameModal = document.getElementById('rename-modal');
+const renameInput = document.getElementById('rename-input');
+const btnSaveRename = document.getElementById('btn-save-rename');
+const btnCloseRename = document.getElementById('btn-close-rename');
+
+const confirmModal = document.getElementById('confirm-modal');
+const confirmMessage = document.getElementById('confirm-message');
+const btnConfirmYes = document.getElementById('btn-confirm-yes');
+const btnConfirmNo = document.getElementById('btn-confirm-no');
+
+const alertModal = document.getElementById('alert-modal');
+const alertMessage = document.getElementById('alert-message');
+const btnAlertOk = document.getElementById('btn-alert-ok');
+
 function escapeHTML(str) {
     return String(str).replace(/[&<>"']/g, c => ({
         '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
     }[c]));
 }
 
-function init() {
-    Store.load();
-    renderSkinOptions();
-    renderLibraryPicker();
+/* ---- confirmar / alertar / renombrar (reemplazan confirm/prompt/alert
+   nativos — no son confiables dentro del WebView de Tauri) ---- */
 
-    const saved = Store.data.currentMatch;
-    if (saved && Array.isArray(saved.players) && saved.players.length) {
-        players = saved.players.map(p => ({
-            id: p.id,
-            name: p.name,
-            skin: skinById(p.skin),
-            score: p.score,
-            history: p.history,
-            profileId: p.profileId || null,
-            locked: p.locked || false,
-            pendingThrow: p.pendingThrow ?? null,
-        }));
-        legNumber = saved.legNumber || 1;
-        legWins = saved.legWins || {};
-        currentMatchId = saved.matchId || uid();
-        colorIndex = players.length;
-    } else {
-        currentMatchId = uid();
-    }
+let confirmCallback = null;
+function showConfirm(message, onYes) {
+    confirmMessage.textContent = message;
+    confirmCallback = onYes;
+    confirmModal.classList.remove('hidden');
+}
+
+let alertCallback = null;
+function showAlert(message, onClose) {
+    alertMessage.textContent = message;
+    alertCallback = onClose || null;
+    alertModal.classList.remove('hidden');
+}
+
+let renameCallback = null;
+function showRename(currentValue, onSave) {
+    renameInput.value = currentValue;
+    renameCallback = onSave;
+    renameModal.classList.remove('hidden');
+}
+
+/** Cada partida es única e irrepetible: no se restaura ninguna partida
+    guardada al abrir/recargar la página — siempre arranca una banda nueva
+    con nombres aleatorios. */
+async function init() {
+    await loadMusicianData();
+    Store.load();
+    mergeCustomMusicians();
+    pruneMusicianProfiles();
+    renderMusicianRoleOptions();
+
+    btnOpenHistory.innerHTML = iconMask('history');
+    btnOpenGraph.innerHTML = iconMask('stonks');
+
+    currentMatchId = uid();
+    formRandomBand().forEach(name => addPlayer(name, null));
 
     setupEventListeners();
-    updateRoundIndicator();
     renderPlayers();
+
+    // La primera medida puede correr antes de que cargue la tipografía
+    // pixelada (Press Start 2P) — al terminar de cargar, se vuelve a medir
+    // con la fuente real para no quedar con un tamaño calculado de más.
+    if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(refitAllScores);
+    }
 }
 
 function setupEventListeners() {
-    btnAddPlayer.addEventListener('click', handleAddPlayerClick);
+    window.addEventListener('resize', refitAllScores);
 
-    inputNewPlayer.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-            addPlayer(inputNewPlayer.value.trim() || getRandomArtistName(), null);
-            inputNewPlayer.value = '';
-        }
+    btnReset.addEventListener('click', resetMatch);
+
+    btnOpenNewPlayer.addEventListener('click', () => openNewPlayerModal(null));
+    btnCloseNewPlayer.addEventListener('click', closeNewPlayerFlow);
+    btnRandomName.addEventListener('click', () => { newPlayerNameInput.value = getRandomArtistName(); });
+    btnSaveNewPlayer.addEventListener('click', handleSaveNewPlayer);
+    newPlayerNameInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') handleSaveNewPlayer();
     });
 
-    btnNextRound.addEventListener('click', nextRound);
-    btnReset.addEventListener('click', resetMatch);
+    btnOpenLibrary.addEventListener('click', openLibraryModal);
+    btnCloseLibrary.addEventListener('click', () => libraryModal.classList.add('hidden'));
+    librarySearchInput.addEventListener('input', () => renderLibraryList(librarySearchInput.value));
+    libraryMusicianList.addEventListener('click', handleLibraryListClick);
+    btnOpenAddMusician.addEventListener('click', openAddMusicianModal);
+
+    btnCloseAddMusician.addEventListener('click', () => addMusicianModal.classList.add('hidden'));
+    btnSaveMusician.addEventListener('click', handleSaveMusician);
 
     btnOpenProfiles.addEventListener('click', openProfilesModal);
     btnCloseProfiles.addEventListener('click', () => profilesModal.classList.add('hidden'));
-    btnAddProfile.addEventListener('click', handleAddProfile);
+    profilesList.addEventListener('click', handleProfilesListClick);
 
     btnOpenHistory.addEventListener('click', openHistoryModal);
     btnCloseHistory.addEventListener('click', () => historyModal.classList.add('hidden'));
@@ -114,33 +340,132 @@ function setupEventListeners() {
     btnOpenGraph.addEventListener('click', openGraphModal);
     btnCloseGraph.addEventListener('click', () => graphModal.classList.add('hidden'));
 
-    btnAdvanceTurn.addEventListener('click', advanceTurn);
+    btnCloseSkin.addEventListener('click', closeSkinModal);
+    btnSaveSkinColor.addEventListener('click', handleSaveSkinColor);
+    btnUploadPhoto.addEventListener('click', () => skinFileInput.click());
+    skinFileInput.addEventListener('change', handlePhotoFileSelected);
+    btnOpenWebcam.addEventListener('click', openWebcam);
+    btnCloseWebcam.addEventListener('click', closeWebcam);
+    btnCaptureWebcam.addEventListener('click', captureWebcamPhoto);
+    btnClearPhoto.addEventListener('click', handleClearPhoto);
 
-    btnModeGuest.addEventListener('click', () => setAddPlayerMode('guest'));
-    btnModeLibrary.addEventListener('click', () => setAddPlayerMode('library'));
+    btnSaveRename.addEventListener('click', handleSaveRenameClick);
+    btnCloseRename.addEventListener('click', () => { renameModal.classList.add('hidden'); renameCallback = null; });
+    renameInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') handleSaveRenameClick();
+    });
+
+    btnConfirmYes.addEventListener('click', () => {
+        confirmModal.classList.add('hidden');
+        const cb = confirmCallback;
+        confirmCallback = null;
+        if (cb) cb();
+    });
+    btnConfirmNo.addEventListener('click', () => {
+        confirmModal.classList.add('hidden');
+        confirmCallback = null;
+    });
+
+    btnAlertOk.addEventListener('click', () => {
+        alertModal.classList.add('hidden');
+        const cb = alertCallback;
+        alertCallback = null;
+        if (cb) cb();
+    });
 }
 
-function setAddPlayerMode(mode) {
-    addPlayerMode = mode;
-    btnModeGuest.classList.toggle('active', mode === 'guest');
-    btnModeLibrary.classList.toggle('active', mode === 'library');
-    guestAddRow.classList.toggle('hidden', mode !== 'guest');
-    libraryPickerWrap.classList.toggle('hidden', mode !== 'library');
-    libraryEmptyHint.classList.toggle('hidden', !(mode === 'library' && !Store.data.profiles.length));
+function handleSaveRenameClick() {
+    const value = renameInput.value.trim();
+    if (!value) return;
+    renameModal.classList.add('hidden');
+    const cb = renameCallback;
+    renameCallback = null;
+    if (cb) cb(value);
 }
 
-function handleAddPlayerClick() {
-    addPlayer(inputNewPlayer.value.trim() || getRandomArtistName(), null);
-    inputNewPlayer.value = '';
+const newPlayerModalTitle = document.getElementById('new-player-modal-title');
+
+/** Sin playerId: modo alta (agrega un jugador nuevo a la partida). Con
+    playerId: modo edición (el botón lápiz de una ficha) — cambia el nombre
+    del jugador ya en juego, o lo reemplaza por un músico/perfil elegido. */
+function openNewPlayerModal(playerId) {
+    editingPlayerId = playerId || null;
+    const editingPlayer = editingPlayerId ? players.find(p => p.id === editingPlayerId) : null;
+    newPlayerModalTitle.textContent = editingPlayer ? 'EDITAR JUGADOR' : 'JUGADOR NUEVO';
+    newPlayerNameInput.value = editingPlayer ? editingPlayer.name : '';
+    newPlayerModal.classList.remove('hidden');
 }
 
-/** Añadir un jugador nuevo (por nombre) lo crea directo como perfil en la
-    biblioteca — así queda disponible la próxima vez sin tener que pasar por
-    el modal de PERFILES aparte. Si el nombre ya existe como perfil, se
-    reutiliza ese perfil en vez de duplicarlo. */
+function closeNewPlayerFlow() {
+    editingPlayerId = null;
+    newPlayerNameInput.value = '';
+    newPlayerModal.classList.add('hidden');
+    libraryModal.classList.add('hidden');
+    profilesModal.classList.add('hidden');
+}
+
+function handleSaveNewPlayer() {
+    const name = newPlayerNameInput.value.trim() || getRandomArtistName();
+    if (editingPlayerId) {
+        applyPlayerIdentity(editingPlayerId, name);
+    } else {
+        addPlayer(name, null);
+    }
+    closeNewPlayerFlow();
+}
+
+/** Cambia la identidad de un jugador ya en juego por un nombre libre. Si el
+    nombre es de la biblioteca de músicos, el jugador queda sin perfil (no
+    se guarda nada); si es personalizado, se crea o reutiliza su perfil. */
+function applyPlayerIdentity(playerId, rawName) {
+    const player = players.find(p => p.id === playerId);
+    if (!player) return;
+
+    player.profileId = null;
+
+    if (!isKnownMusicianName(rawName)) {
+        const result = Store.addProfile(rawName.toUpperCase(), player.skin.id);
+        if (result) {
+            const profile = result.profile || result.dupe;
+            player.profileId = profile.id;
+            player.name = profile.name;
+            player.skin = resolveSkin(profile.skin, profile.customColor);
+            player.avatar = profile.avatar || null;
+        } else {
+            player.name = rawName.toUpperCase();
+        }
+    } else {
+        player.name = rawName.toUpperCase();
+    }
+
+    persistCurrentMatch();
+    renderPlayers();
+}
+
+/** Cambia la identidad de un jugador ya en juego por un perfil guardado. */
+function applyPlayerIdentityFromProfile(playerId, profileId) {
+    const player = players.find(p => p.id === playerId);
+    const profile = Store.profile(profileId);
+    if (!player || !profile) return;
+    if (players.some(p => p.id !== playerId && p.profileId === profileId)) return; // ya está en juego
+
+    player.profileId = profileId;
+    player.name = profile.name;
+    player.skin = resolveSkin(profile.skin, profile.customColor);
+    player.avatar = profile.avatar || null;
+
+    persistCurrentMatch();
+    renderPlayers();
+}
+
+/** Añadir un jugador nuevo (por nombre libre, o por profileId ya guardado).
+    Un nombre de músico de la biblioteca es un jugador de una sola partida:
+    no genera perfil. Un nombre que NO está en la biblioteca es personalizado
+    y se guarda como perfil (con stats y rango) para poder reusarlo. */
 function addPlayer(name, profileId) {
     let finalName;
     let skin;
+    let avatar = null;
     let linkedProfileId = profileId || null;
 
     if (profileId) {
@@ -148,19 +473,23 @@ function addPlayer(name, profileId) {
         const profile = Store.profile(profileId);
         if (!profile) return;
         finalName = profile.name;
-        skin = skinById(profile.skin);
+        skin = resolveSkin(profile.skin, profile.customColor);
+        avatar = profile.avatar || null;
     } else {
         finalName = name.toUpperCase();
         skin = SKINS[colorIndex % SKINS.length];
         colorIndex++;
 
-        const result = Store.addProfile(finalName, skin.id);
-        if (result) {
-            const profile = result.profile || result.dupe;
-            if (players.some(p => p.profileId === profile.id)) return; // ya está en juego
-            linkedProfileId = profile.id;
-            finalName = profile.name;
-            skin = skinById(profile.skin);
+        if (!isKnownMusicianName(name)) {
+            const result = Store.addProfile(finalName, skin.id);
+            if (result) {
+                const profile = result.profile || result.dupe;
+                if (players.some(p => p.profileId === profile.id)) return; // ya está en juego
+                linkedProfileId = profile.id;
+                finalName = profile.name;
+                skin = resolveSkin(profile.skin, profile.customColor);
+                avatar = profile.avatar || null;
+            }
         }
     }
 
@@ -168,24 +497,21 @@ function addPlayer(name, profileId) {
         id: uid(),
         name: finalName,
         skin,
+        avatar,
         score: 0,
         history: [],
         profileId: linkedProfileId,
-        locked: false,
-        pendingThrow: null,
     });
     persistCurrentMatch();
     renderPlayers();
 }
 
 function removePlayer(playerId) {
-    const confirmDelete = confirm("¿Seguro que querés eliminar a este jugador?");
-    if (confirmDelete) {
+    showConfirm('¿Seguro que querés eliminar a este jugador?', () => {
         players = players.filter(p => p.id !== playerId);
-        delete legWins[playerId];
         persistCurrentMatch();
         renderPlayers();
-    }
+    });
 }
 
 function handleScore(playerId, points) {
@@ -244,29 +570,63 @@ function undoLast(playerId) {
     renderPlayers();
 }
 
+/** El lápiz de "editar personaje" abre el popup JUGADOR NUEVO en modo
+    edición — reemplaza al viejo prompt() nativo (poco confiable en el
+    WebView de Tauri). */
 function renamePlayer(playerId) {
-    const player = players.find(p => p.id === playerId);
-    if (!player) return;
-
-    const newName = prompt(`Escribí el nuevo nombre para ${player.name}:`, player.name);
-    if (newName !== null && newName.trim() !== '') {
-        player.name = newName.trim().toUpperCase();
-        persistCurrentMatch();
-        renderPlayers();
-    }
+    openNewPlayerModal(playerId);
 }
 
 function changePlayerColor(playerId) {
-    const player = players.find(p => p.id === playerId);
-    if (!player) return;
+    openSkinModal({ type: 'player', id: playerId });
+}
 
-    const currentIndex = SKINS.findIndex(s => s.id === player.skin.id);
-    player.skin = SKINS[(currentIndex + 1) % SKINS.length];
-    if (player.profileId) {
-        Store.updateProfile(player.profileId, { skin: player.skin.id });
+/** Ajusta el font-size del puntaje para que ocupe el espacio disponible de
+    SU ficha en concreto — ni cqmin ni ningún otro truco de CSS puro sabe
+    cuánto mide el texto ya renderizado, así que hay que medirlo: prueba
+    tamaños por búsqueda binaria hasta encontrar el más grande que entra
+    tanto a lo ancho (nunca se corta un "420") como a lo alto (deja lugar
+    para la última jugada, debajo). Así el número se ve igual de grande
+    tanto si hay 2 jugadores como si hay 10, sin importar la forma de la
+    ficha. */
+const _fitScoreCanvas = document.createElement('canvas');
+const _fitScoreCtx = _fitScoreCanvas.getContext('2d');
+
+function fitScoreText(scoreEl) {
+    if (!scoreEl) return;
+    const cardMiddle = scoreEl.parentElement;
+    // OJO: scoreEl.clientWidth/scrollWidth NO sirven acá — es un bloque a lo
+    // ancho completo de la ficha, así que su "ancho" no cambia aunque el
+    // texto sea chico o grande (nunca desborda, nunca "scrollea"). Para
+    // saber cuánto ocupa el número tal cual se va a ver, hay que medirlo
+    // con canvas.measureText en la tipografía real.
+    const maxWidth = cardMiddle.clientWidth * 0.94;
+    const maxHeight = cardMiddle.clientHeight * 0.55;
+    if (maxWidth <= 0 || maxHeight <= 0) return;
+
+    const text = scoreEl.textContent;
+    const fontFamily = getComputedStyle(scoreEl).fontFamily;
+
+    let lo = 8, hi = 300;
+    while (hi - lo > 1) {
+        const mid = Math.floor((lo + hi) / 2);
+        _fitScoreCtx.font = `${mid}px ${fontFamily}`;
+        const width = _fitScoreCtx.measureText(text).width;
+        if (width <= maxWidth && mid <= maxHeight) {
+            lo = mid;
+        } else {
+            hi = mid;
+        }
     }
-    persistCurrentMatch();
-    renderPlayers();
+    scoreEl.style.fontSize = `${lo}px`;
+}
+
+let fitScoreResizeTimer = null;
+function refitAllScores() {
+    clearTimeout(fitScoreResizeTimer);
+    fitScoreResizeTimer = setTimeout(() => {
+        document.querySelectorAll('.player-score').forEach(fitScoreText);
+    }, 120);
 }
 
 function getSymmetricLayout(n) {
@@ -305,7 +665,6 @@ function renderPlayers() {
 
     if (!players.length) {
         playersContainer.innerHTML = '<p class="empty-hint">Todavía no hay jugadores — añadí uno arriba para empezar.</p>';
-        renderLibraryPicker();
         return;
     }
 
@@ -320,62 +679,68 @@ function renderPlayers() {
             if (playerIndex >= players.length) break;
             const player = players[playerIndex];
             const color = player.skin.primary;
-            const wins = legWins[player.id] || 0;
 
             const card = document.createElement('div');
-            card.className = player.locked ? 'player-card locked' : 'player-card';
+            card.id = `card-${player.id}`;
+            card.className = 'player-card' + (player.flashUntil && player.flashUntil > Date.now() ? ' flash-warning' : '');
 
-            let historyHTML = player.history.map(h => {
-                if (h.bust) {
-                    return `<div class="history-item history-bust">
-                        <span>Tiró ${h.throw} (Sobran ${h.sobrante})</span>
-                        <span>-> ${h.result}</span>
+            // Cada tiro es "la ronda N" de ESE jugador (1ra jugada = ronda 1,
+            // 2da = ronda 2...). history está en orden más-nuevo-primero, así
+            // que el número de ronda de la entrada en el índice i es
+            // (total de tiros - i).
+            const totalThrows = player.history.length;
+            const renderHistoryItem = (h, i) => {
+                const roundNum = totalThrows - i;
+                return h.bust
+                    ? `<div class="history-item history-bust">
+                        <span>Ronda ${roundNum}: ${h.throw} pts. (Sobran ${h.sobrante})</span>
+                        <span>→ ${h.result} pts.</span>
+                    </div>`
+                    : `<div class="history-item">
+                        <span>Ronda ${roundNum}: ${h.throw} pts.</span>
+                        <span>→ ${h.result} pts.</span>
                     </div>`;
-                }
-                return `<div class="history-item">
-                    <span>Tiró ${h.throw}</span>
-                    <span>-> ${h.result}</span>
-                </div>`;
-            }).join('');
+            };
+
+            // Franja fija: solo la última jugada. El resto se despliega al
+            // pasar el mouse (ver .history-full / .card-middle:hover).
+            const historyLastHTML = totalThrows ? renderHistoryItem(player.history[0], 0) : '';
+            const historyFullHTML = player.history.map(renderHistoryItem).join('');
 
             card.innerHTML = `
                 <div class="card-gradient" style="background: linear-gradient(90deg, transparent, ${color}, transparent);"></div>
-                <button class="btn-remove" onclick="removePlayer('${player.id}')" title="Quitar Jugador">X</button>
-                ${wins > 0 ? `<div class="win-badge" style="border-color:${color}; color:${color};">🏆 ${wins}</div>` : ''}
+                <button class="btn-remove marker-icon-btn" onclick="removePlayer('${player.id}')" style="border-color:${color}; color:${color};" onmouseover="this.style.background='${color}20'" onmouseout="this.style.background='none'" title="Quitar Jugador">X</button>
 
-                <div class="player-name" style="color: ${color}; cursor: pointer; text-decoration: underline; text-decoration-color: ${color}60;" onclick="renamePlayer('${player.id}')" title="Clic para renombrar">
-                    ${escapeHTML(player.name)} ✎
+                <div class="card-top-left">
+                    ${isKnownMusicianName(player.name) ? `
+                    <a class="marker-icon-btn" href="${buildYoutubeSearchUrl(player.name)}" target="_blank" rel="noopener noreferrer" onclick="return openExternal(this.href)" style="border-color:${color}; color:${color};" onmouseover="this.style.background='${color}20'" onmouseout="this.style.background='none'" title="Buscar en YouTube">${iconMask('notes')}</a>
+                    ` : ''}
+                    <button class="marker-icon-btn" onclick="changePlayerColor('${player.id}')" style="border-color:${color}; color:${color};" onmouseover="this.style.background='${color}20'" onmouseout="this.style.background='none'" title="Cambiar apariencia">${iconMask('bucket')}</button>
+                    <button class="marker-icon-btn" onclick="renamePlayer('${player.id}')" style="border-color:${color}; color:${color};" onmouseover="this.style.background='${color}20'" onmouseout="this.style.background='none'" title="Editar personaje">${iconMask('pencil')}</button>
+                    ${player.avatar ? `<img src="${player.avatar}" class="player-avatar" alt="">` : ''}
                 </div>
 
-                <div style="text-align: center; margin-bottom: 2cqmin;">
-                    <button onclick="changePlayerColor('${player.id}')" style="background:none; border:1px solid ${color}40; color:${color}; font-family:var(--font-retro); font-size:4cqmin; padding:1cqmin 2cqmin; cursor:pointer; border-radius:1cqmin; transition: 0.2s;" onmouseover="this.style.background='${color}20'" onmouseout="this.style.background='none'">
-                        CAMBIAR SKIN
-                    </button>
+                <div class="player-name" style="color: ${color};">
+                    ${escapeHTML(player.name)}
                 </div>
 
-                <div class="player-score" style="text-shadow: 0 0 10px #fff, 0 0 20px ${color};">${player.score}</div>
+                <div class="card-middle">
+                    <div class="player-score" style="text-shadow: 0 0 10px #fff, 0 0 20px ${color};">${player.score}</div>
 
-                ${player.locked ? `
-                <div class="locked-panel" style="border-color:${color}; color:${color};">
-                    <div class="locked-icon">🔒</div>
-                    <div class="locked-value">${player.pendingThrow}</div>
-                    <button class="retro-btn sm" style="color:${color}; border-color:${color};" onclick="unlockPlayer('${player.id}')">
-                        🔓 DESBLOQUEAR
-                    </button>
+                    <div class="history-strip">
+                        <div class="history-last">${historyLastHTML}</div>
+                        <div class="history-full">${historyFullHTML}</div>
+                    </div>
                 </div>
-                ` : `
+
                 <div class="throw-controls">
+                    <button class="marker-icon-btn" onclick="undoLast('${player.id}')" style="border-color:${color}; color:${color};" onmouseover="this.style.background='${color}20'" onmouseout="this.style.background='none'" title="Deshacer">${iconMask('undo')}</button>
                     <input type="number" id="input-${player.id}" class="throw-input" placeholder="PUNTOS" min="0" step="0.5" autocomplete="off" style="border-color:${color}; color:${color}; box-shadow: inset 0 0 10px ${color}20;">
-                    <button class="retro-btn sm" style="color:${color}; border-color:${color};" onclick="submitScore('${player.id}')" onmouseover="this.style.background='${color}'; this.style.color='#000';" onmouseout="this.style.background='transparent'; this.style.color='${color}';">
-                        OK
-                    </button>
-                </div>
-                `}
-
-                <button class="retro-btn sm yellow btn-undo" onclick="undoLast('${player.id}')">DESHACER</button>
-
-                <div class="history-container">
-                    ${historyHTML}
+                    <div class="throw-stepper" style="border-color:${color};">
+                        <button type="button" class="throw-stepper-btn" onclick="adjustThrowInput('${player.id}', 1)" style="color:${color};" onmouseover="this.style.background='${color}20'" onmouseout="this.style.background='none'" title="Sumar">▲</button>
+                        <button type="button" class="throw-stepper-btn" onclick="adjustThrowInput('${player.id}', -1)" style="color:${color};" onmouseover="this.style.background='${color}20'" onmouseout="this.style.background='none'" title="Restar">▼</button>
+                    </div>
+                    <button class="marker-icon-btn" style="color:${color}; border-color:${color};" onclick="submitScore('${player.id}')" onmouseover="this.style.background='${color}20'" onmouseout="this.style.background='none'" title="Anotar">${iconMask('tick')}</button>
                 </div>
             `;
             rowDiv.appendChild(card);
@@ -389,62 +754,53 @@ function renderPlayers() {
                         }
                     });
                 }
+                fitScoreText(card.querySelector('.player-score'));
             }, 0);
 
             playerIndex++;
         }
         playersContainer.appendChild(rowDiv);
     }
-
-    renderLibraryPicker();
 }
 
-/** Cierra la ficha del jugador con el tiro tipeado, en vez de aplicarlo ya
-    mismo — queda "en espera" hasta que se confirme el turno con
-    SIGUIENTE TURNO, para no tener que ir jugador por jugador. */
-function lockPlayerThrow(playerId) {
+/** Sube/baja el valor del cuadro de puntos de a un paso — reemplaza a las
+    flechitas nativas del input number, que quedaban tapando el placeholder
+    "PUNTOS". */
+function adjustThrowInput(playerId, direction) {
+    const input = document.getElementById(`input-${playerId}`);
+    if (!input) return;
+    if (direction > 0) input.stepUp(); else input.stepDown();
+}
+window.adjustThrowInput = adjustThrowInput;
+
+/** Aplica el tiro tipeado apenas se toca OK, sin esperar a nadie más. */
+function submitScore(playerId) {
     const input = document.getElementById(`input-${playerId}`);
     const points = parseFloat(input.value);
     if (isNaN(points) || points < 0) return;
-
-    const player = players.find(p => p.id === playerId);
-    if (!player) return;
-
-    player.locked = true;
-    player.pendingThrow = points;
-    persistCurrentMatch();
-    renderPlayers();
+    handleScore(playerId, points);
+    checkRoundSync(playerId);
 }
 
-function unlockPlayer(playerId) {
-    const player = players.find(p => p.id === playerId);
-    if (!player) return;
+/** Si al anotar este jugador queda por delante de otros que todavía no
+    jugaron esa misma ronda (menos tiros acumulados), sus fichas parpadean
+    5 segundos para avisar que faltan por tirar. No bloquea nada — solo
+    avisa. */
+function checkRoundSync(scoredPlayerId) {
+    const scorer = players.find(p => p.id === scoredPlayerId);
+    if (!scorer) return;
+    const scorerThrows = scorer.history.length;
+    const lagging = players.filter(p => p.id !== scoredPlayerId && p.history.length < scorerThrows);
+    if (!lagging.length) return;
 
-    player.locked = false;
-    player.pendingThrow = null;
-    persistCurrentMatch();
+    const until = Date.now() + 5000;
+    lagging.forEach(p => { p.flashUntil = until; });
     renderPlayers();
-}
-
-/** Aplica de una sola vez el tiro de todos los jugadores que ya cerraron su
-    ficha y deja sin tocar a quien todavía no tipeó nada este turno. */
-function advanceTurn() {
-    players.forEach(p => {
-        if (p.locked && p.pendingThrow !== null) {
-            handleScore(p.id, p.pendingThrow);
-        }
-    });
-    players.forEach(p => {
-        p.locked = false;
-        p.pendingThrow = null;
-    });
-    persistCurrentMatch();
-    renderPlayers();
+    setTimeout(renderPlayers, 5000);
 }
 
 // Make functions global for inline onclick
-window.submitScore = lockPlayerThrow;
-window.unlockPlayer = unlockPlayer;
+window.submitScore = submitScore;
 window.undoLast = undoLast;
 window.renamePlayer = renamePlayer;
 window.changePlayerColor = changePlayerColor;
@@ -501,8 +857,11 @@ function clearWeedLeaves() {
     document.querySelectorAll('.weed-leaf').forEach(e => e.remove());
 }
 
-function recordCurrentLeg() {
-    const legPlayers = players.map(p => ({
+/** Registra la partida terminada en el historial y, si hay un ganador con
+    perfil guardado, le suma una partida ganada a sus stats. Cada partida es
+    única — no hay mangas ni repeticiones dentro de la misma partida. */
+function recordFinishedGame() {
+    const finishedPlayers = players.map(p => ({
         profileId: p.profileId || null,
         name: p.name,
         finalScore: p.score,
@@ -510,9 +869,11 @@ function recordCurrentLeg() {
         throwCount: p.history.length,
         throws: [...p.history].reverse().map(h => h.throw),
     }));
-    Store.recordLeg({ legNumber, target: TARGET_SCORE, players: legPlayers, matchId: currentMatchId });
-    if (winnerPlayerId) {
-        legWins[winnerPlayerId] = (legWins[winnerPlayerId] || 0) + 1;
+    Store.recordLeg({ legNumber: 1, target: TARGET_SCORE, players: finishedPlayers, matchId: currentMatchId });
+
+    const winner = players.find(p => p.id === winnerPlayerId);
+    if (winner && winner.profileId) {
+        Store.finalizeMatch({ [winner.profileId]: 1 });
     }
 }
 
@@ -523,48 +884,21 @@ function clearScores() {
     });
 }
 
-function nextRound() {
-    recordCurrentLeg();
-    clearScores();
-    legNumber++;
-    winnerPlayerId = null;
-    winnerModal.classList.add('hidden');
-    clearWeedLeaves();
-    persistCurrentMatch();
-    updateRoundIndicator();
-    renderPlayers();
-}
-
+/** Única forma de volver a jugar: archiva la partida recién terminada y
+    arranca una nueva con los mismos jugadores, puntajes en cero. */
 function resetMatch() {
-    recordCurrentLeg();
-
-    const profileWins = {};
-    players.forEach(p => {
-        if (!p.profileId) return;
-        profileWins[p.profileId] = (profileWins[p.profileId] || 0) + (legWins[p.id] || 0);
-    });
-    Store.finalizeMatch(profileWins);
-
+    recordFinishedGame();
     clearScores();
-    legWins = {};
-    legNumber = 1;
     winnerPlayerId = null;
     currentMatchId = uid();
     winnerModal.classList.add('hidden');
     clearWeedLeaves();
     persistCurrentMatch();
-    updateRoundIndicator();
     renderPlayers();
-}
-
-function updateRoundIndicator() {
-    roundIndicator.textContent = `RONDA ${legNumber}`;
 }
 
 function persistCurrentMatch() {
     Store.saveCurrentMatch({
-        legNumber,
-        legWins,
         matchId: currentMatchId,
         players: players.map(p => ({
             id: p.id,
@@ -573,36 +907,97 @@ function persistCurrentMatch() {
             score: p.score,
             history: p.history,
             profileId: p.profileId,
-            locked: p.locked,
-            pendingThrow: p.pendingThrow,
         })),
     });
 }
 
-/* ---- perfiles ---- */
+/* ---- biblioteca de músicos ---- */
 
-function renderSkinOptions() {
-    newProfileSkin.innerHTML = SKINS.map(s =>
-        `<option value="${s.id}">${escapeHTML(s.label)}</option>`).join('');
+function openLibraryModal() {
+    librarySearchInput.value = '';
+    renderLibraryList('');
+    libraryModal.classList.remove('hidden');
 }
 
-function renderLibraryPicker() {
-    libraryPicker.innerHTML = Store.data.profiles.map(profile => {
-        const skin = skinById(profile.skin);
-        const inPlay = players.some(p => p.profileId === profile.id);
+function renderLibraryList(query) {
+    const q = query.trim().toLowerCase();
+    const entries = [];
+    Object.entries(MUSICIAN_ROLES).forEach(([role, names]) => {
+        names.forEach(n => entries.push({ name: n, role }));
+    });
+    const filtered = (q ? entries.filter(e => e.name.toLowerCase().includes(q)) : entries)
+        .sort((a, b) => a.name.localeCompare(b.name));
+
+    if (!filtered.length) {
+        libraryMusicianList.innerHTML = '<p class="empty-hint">No se encontraron músicos.</p>';
+        return;
+    }
+    libraryMusicianList.innerHTML = filtered.map(e => {
+        const inPlay = players.some(p => p.name === e.name.toUpperCase());
         return `
-            <button class="player-chip${inPlay ? ' disabled' : ''}" style="border-color:${skin.primary}; color:${skin.primary};" onclick="addPlayerFromLibrary('${profile.id}')" ${inPlay ? 'disabled' : ''}>
-                <span class="chip-avatar" style="background:${skin.primary};"></span>
-                ${escapeHTML(profile.name)}
+            <button class="player-chip${inPlay ? ' disabled' : ''}" data-name="${escapeHTML(e.name)}" ${inPlay ? 'disabled' : ''}>
+                ${escapeHTML(e.name)}
+                <span class="chip-role">${escapeHTML(ROLE_LABELS[e.role] || e.role)}</span>
             </button>
         `;
     }).join('');
-    libraryEmptyHint.classList.toggle('hidden', !(addPlayerMode === 'library' && !Store.data.profiles.length));
 }
 
-window.addPlayerFromLibrary = function(profileId) {
-    addPlayer(null, profileId);
-};
+function handleLibraryListClick(e) {
+    const btn = e.target.closest('button[data-name]');
+    if (!btn || btn.disabled) return;
+    if (editingPlayerId) {
+        applyPlayerIdentity(editingPlayerId, btn.dataset.name);
+    } else {
+        addPlayer(btn.dataset.name, null);
+    }
+    closeNewPlayerFlow();
+}
+
+function renderMusicianRoleOptions() {
+    newMusicianRoleSelect.innerHTML = Object.entries(ROLE_LABELS)
+        .map(([key, label]) => `<option value="${key}">${escapeHTML(label)}</option>`).join('');
+}
+
+function openAddMusicianModal() {
+    newMusicianNameInput.value = '';
+    addMusicianModal.classList.remove('hidden');
+}
+
+function handleSaveMusician() {
+    const name = newMusicianNameInput.value.trim();
+    const role = newMusicianRoleSelect.value;
+    if (!name) return;
+    if (isKnownMusicianName(name)) {
+        showAlert('Ya existe un músico con ese nombre.');
+        return;
+    }
+    const result = Store.addCustomMusician(name, role);
+    if (!result || result.dupe) {
+        showAlert('Ya existe un músico con ese nombre.');
+        return;
+    }
+    addMusicianToRuntime(name, role);
+    addMusicianModal.classList.add('hidden');
+    renderLibraryList(librarySearchInput.value);
+}
+
+/* ---- perfiles (solo nombres personalizados) ---- */
+
+const RANKS = [
+    { name: 'Dios', min: 22 },
+    { name: 'Platino', min: 16 },
+    { name: 'Oro', min: 11 },
+    { name: 'Plata', min: 7 },
+    { name: 'Bronce', min: 4 },
+    { name: 'Latón', min: 2 },
+    { name: 'Cobre', min: 1 },
+    { name: 'Madera', min: 0 },
+];
+
+function getRank(matchesWon) {
+    return RANKS.find(r => matchesWon >= r.min).name;
+}
 
 function openProfilesModal() {
     renderProfilesList();
@@ -611,27 +1006,33 @@ function openProfilesModal() {
 
 function renderProfilesList() {
     if (!Store.data.profiles.length) {
-        profilesList.innerHTML = '<p class="empty-hint">Todavía no hay perfiles guardados.</p>';
+        profilesList.innerHTML = '<p class="empty-hint">Todavía no hay perfiles guardados — creá un jugador con nombre personalizado.</p>';
         return;
     }
     profilesList.innerHTML = Store.data.profiles.map(profile => {
-        const skin = skinById(profile.skin);
+        const skin = resolveSkin(profile.skin, profile.customColor);
         const winRate = profile.stats.legsPlayed
             ? Math.round((profile.stats.legsWon / profile.stats.legsPlayed) * 100)
             : 0;
+        const inPlay = players.some(p => p.profileId === profile.id);
+        const rank = getRank(profile.stats.matchesWon);
+        const swatch = profile.avatar
+            ? `<img src="${profile.avatar}" class="profile-swatch profile-swatch-photo" alt="">`
+            : `<div class="profile-swatch" style="background:${skin.primary}; border-color:${skin.accent};"></div>`;
         return `
             <div class="profile-card">
-                <div class="profile-header">
-                    <div class="profile-swatch" style="background:${skin.primary}; border-color:${skin.accent};"></div>
+                <button class="profile-header profile-pick" data-profile-id="${profile.id}" ${inPlay ? 'disabled' : ''} title="${inPlay ? 'Ya está en juego' : 'Añadir a la partida'}">
+                    ${swatch}
                     <div class="profile-info">
                         <div class="profile-name">${escapeHTML(profile.name)}</div>
+                        <div class="profile-rank">🏅 ${rank}</div>
                         <div class="profile-stats">
-                            ${profile.stats.legsWon}/${profile.stats.legsPlayed} mangas (${winRate}%) · ${profile.stats.matchesWon} partidas ganadas
+                            ${profile.stats.legsWon}/${profile.stats.legsPlayed} partidas jugadas (${winRate}%) · ${profile.stats.matchesWon} ganadas
                         </div>
                     </div>
-                </div>
+                </button>
                 <div class="profile-actions">
-                    <button class="retro-btn compact" onclick="cycleProfileSkin('${profile.id}')">SKIN</button>
+                    <button class="retro-btn compact icon-btn" onclick="cycleProfileSkin('${profile.id}')" title="Cambiar apariencia">🎨</button>
                     <button class="retro-btn compact" onclick="renameProfile('${profile.id}')">RENOMBRAR</button>
                     <button class="retro-btn compact yellow" onclick="deleteProfile('${profile.id}')">BORRAR</button>
                 </div>
@@ -640,53 +1041,206 @@ function renderProfilesList() {
     }).join('');
 }
 
-function handleAddProfile() {
-    const name = newProfileName.value;
-    const skinId = newProfileSkin.value;
-    const result = Store.addProfile(name, skinId);
-    if (!result) return;
-    if (result.dupe) {
-        alert('Ya existe un perfil con ese nombre.');
-        return;
+function handleProfilesListClick(e) {
+    const btn = e.target.closest('.profile-pick');
+    if (!btn || btn.disabled) return;
+    if (editingPlayerId) {
+        applyPlayerIdentityFromProfile(editingPlayerId, btn.dataset.profileId);
+    } else {
+        addPlayer(null, btn.dataset.profileId);
     }
-    newProfileName.value = '';
-    renderProfilesList();
-    renderLibraryPicker();
+    closeNewPlayerFlow();
 }
 
 window.cycleProfileSkin = function(profileId) {
-    const profile = Store.profile(profileId);
-    if (!profile) return;
-    const currentIndex = SKINS.findIndex(s => s.id === profile.skin);
-    const nextSkin = SKINS[(currentIndex + 1) % SKINS.length];
-    Store.updateProfile(profileId, { skin: nextSkin.id });
-    const inPlay = players.find(p => p.profileId === profileId);
-    if (inPlay) {
-        inPlay.skin = nextSkin;
-        persistCurrentMatch();
-        renderPlayers();
-    }
-    renderProfilesList();
+    openSkinModal({ type: 'profile', id: profileId });
 };
 
 window.renameProfile = function(profileId) {
     const profile = Store.profile(profileId);
     if (!profile) return;
-    const newName = prompt(`Escribí el nuevo nombre para ${profile.name}:`, profile.name);
-    if (newName === null || !newName.trim()) return;
-    Store.updateProfile(profileId, { name: newName.trim() });
-    renderProfilesList();
-    renderLibraryPicker();
+    showRename(profile.name, (newName) => {
+        Store.updateProfile(profileId, { name: newName.toUpperCase() });
+        const inPlay = players.find(p => p.profileId === profileId);
+        if (inPlay) {
+            inPlay.name = newName.toUpperCase();
+            persistCurrentMatch();
+            renderPlayers();
+        }
+        renderProfilesList();
+    });
 };
 
 window.deleteProfile = function(profileId) {
-    if (!confirm('¿Seguro que querés borrar este perfil? Se pierden sus estadísticas.')) return;
-    Store.removeProfile(profileId);
-    players.forEach(p => { if (p.profileId === profileId) p.profileId = null; });
-    persistCurrentMatch();
-    renderProfilesList();
-    renderLibraryPicker();
+    showConfirm('¿Seguro que querés borrar este perfil? Se pierden sus estadísticas.', () => {
+        Store.removeProfile(profileId);
+        players.forEach(p => { if (p.profileId === profileId) p.profileId = null; });
+        persistCurrentMatch();
+        renderProfilesList();
+    });
 };
+
+/* ---- apariencia: color RGB personalizado, foto desde PC o webcam ---- */
+
+function getSkinTargetEntity() {
+    if (!skinTarget) return null;
+    if (skinTarget.type === 'player') return players.find(p => p.id === skinTarget.id);
+    if (skinTarget.type === 'profile') return Store.profile(skinTarget.id);
+    return null;
+}
+
+function openSkinModal(target) {
+    skinTarget = target;
+    const entity = getSkinTargetEntity();
+    // Un player.skin ya es el objeto resuelto {primary,...}; un profile.skin
+    // es solo el id guardado, hay que resolverlo (soporta color 'custom').
+    const primary = entity
+        ? (target.type === 'player' ? entity.skin.primary : resolveSkin(entity.skin, entity.customColor).primary)
+        : '#00ffff';
+    skinColorInput.value = primary;
+    const avatar = entity ? entity.avatar : null;
+    if (avatar) {
+        skinPhotoPreview.src = avatar;
+        skinPhotoPreviewWrap.classList.remove('hidden');
+    } else {
+        skinPhotoPreview.src = '';
+        skinPhotoPreviewWrap.classList.add('hidden');
+    }
+    skinModal.classList.remove('hidden');
+}
+
+function closeSkinModal() {
+    closeWebcam();
+    skinModal.classList.add('hidden');
+    skinTarget = null;
+}
+
+/** Aplica un cambio de skin/avatar al jugador o perfil elegido en
+    openSkinModal. patch puede traer `skin` (objeto {id,label,primary,accent})
+    y/o `avatar` (dataURL o null). */
+function applySkinPatchToTarget(patch) {
+    if (!skinTarget) return;
+
+    if (skinTarget.type === 'player') {
+        const player = players.find(p => p.id === skinTarget.id);
+        if (!player) return;
+        if (patch.skin) player.skin = patch.skin;
+        if ('avatar' in patch) player.avatar = patch.avatar;
+
+        if (player.profileId) {
+            const profilePatch = {};
+            if (patch.skin) {
+                profilePatch.skin = patch.skin.id;
+                profilePatch.customColor = patch.skin.id === 'custom' ? patch.skin.primary : null;
+            }
+            if ('avatar' in patch) profilePatch.avatar = patch.avatar;
+            Store.updateProfile(player.profileId, profilePatch);
+        }
+        persistCurrentMatch();
+        renderPlayers();
+    } else if (skinTarget.type === 'profile') {
+        const profile = Store.profile(skinTarget.id);
+        if (!profile) return;
+        const profilePatch = {};
+        if (patch.skin) {
+            profilePatch.skin = patch.skin.id;
+            profilePatch.customColor = patch.skin.id === 'custom' ? patch.skin.primary : null;
+        }
+        if ('avatar' in patch) profilePatch.avatar = patch.avatar;
+        Store.updateProfile(skinTarget.id, profilePatch);
+
+        const inPlay = players.find(p => p.profileId === skinTarget.id);
+        if (inPlay) {
+            if (patch.skin) inPlay.skin = patch.skin;
+            if ('avatar' in patch) inPlay.avatar = patch.avatar;
+            persistCurrentMatch();
+            renderPlayers();
+        }
+        renderProfilesList();
+    }
+}
+
+function handleSaveSkinColor() {
+    const hex = skinColorInput.value;
+    applySkinPatchToTarget({ skin: { id: 'custom', label: 'Personalizado', primary: hex, accent: hex } });
+}
+
+/** Recorta y reescala una imagen (o el frame de un <video>) a un cuadrado
+    de AVATAR_SIZE px, para no inflar localStorage con fotos a resolución
+    completa. */
+function resizeImageToDataURL(source, callback) {
+    const canvas = skinWebcamCanvas || document.createElement('canvas');
+    canvas.width = AVATAR_SIZE;
+    canvas.height = AVATAR_SIZE;
+    const ctx = canvas.getContext('2d');
+    const iw = source.naturalWidth || source.videoWidth;
+    const ih = source.naturalHeight || source.videoHeight;
+    const scale = Math.max(AVATAR_SIZE / iw, AVATAR_SIZE / ih);
+    const sw = AVATAR_SIZE / scale;
+    const sh = AVATAR_SIZE / scale;
+    const sx = (iw - sw) / 2;
+    const sy = (ih - sh) / 2;
+    ctx.clearRect(0, 0, AVATAR_SIZE, AVATAR_SIZE);
+    ctx.drawImage(source, sx, sy, sw, sh, 0, 0, AVATAR_SIZE, AVATAR_SIZE);
+    callback(canvas.toDataURL('image/jpeg', 0.8));
+}
+
+function showPhotoPreview(dataUrl) {
+    skinPhotoPreview.src = dataUrl;
+    skinPhotoPreviewWrap.classList.remove('hidden');
+}
+
+function handlePhotoFileSelected() {
+    const file = skinFileInput.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+        const img = new Image();
+        img.onload = () => {
+            resizeImageToDataURL(img, (dataUrl) => {
+                showPhotoPreview(dataUrl);
+                applySkinPatchToTarget({ avatar: dataUrl });
+            });
+        };
+        img.src = reader.result;
+    };
+    reader.readAsDataURL(file);
+    skinFileInput.value = '';
+}
+
+function handleClearPhoto() {
+    skinPhotoPreviewWrap.classList.add('hidden');
+    skinPhotoPreview.src = '';
+    applySkinPatchToTarget({ avatar: null });
+}
+
+async function openWebcam() {
+    try {
+        webcamStream = await navigator.mediaDevices.getUserMedia({ video: true });
+    } catch (err) {
+        showAlert('No se pudo acceder a la cámara. Revisá los permisos.');
+        return;
+    }
+    skinWebcamVideo.srcObject = webcamStream;
+    skinWebcamWrap.classList.remove('hidden');
+}
+
+function closeWebcam() {
+    if (webcamStream) {
+        webcamStream.getTracks().forEach(t => t.stop());
+        webcamStream = null;
+    }
+    skinWebcamVideo.srcObject = null;
+    skinWebcamWrap.classList.add('hidden');
+}
+
+function captureWebcamPhoto() {
+    resizeImageToDataURL(skinWebcamVideo, (dataUrl) => {
+        showPhotoPreview(dataUrl);
+        applySkinPatchToTarget({ avatar: dataUrl });
+        closeWebcam();
+    });
+}
 
 /* ---- historial ---- */
 
@@ -697,7 +1251,7 @@ function openHistoryModal() {
 
 function renderHistoryList() {
     if (!Store.data.matchHistory.length) {
-        historyList.innerHTML = '<p class="empty-hint">Todavía no hay mangas registradas.</p>';
+        historyList.innerHTML = '<p class="empty-hint">Todavía no hay partidas registradas.</p>';
         return;
     }
     historyList.innerHTML = Store.data.matchHistory.map(leg => {
@@ -710,7 +1264,6 @@ function renderHistoryList() {
         return `
             <div class="history-leg">
                 <div class="history-leg-header">
-                    <span>Ronda ${leg.legNumber}</span>
                     <span>${date}</span>
                 </div>
                 ${rows}
@@ -720,49 +1273,48 @@ function renderHistoryList() {
 }
 
 /* ---- gráfico de puntuación ----
-   Canvas dibujado a mano (sin librería), mismo enfoque que el GraphCanvas de
-   niobiologic. Cada RONDA (manga) de la partida en curso es un sector del
-   eje X con el mismo ancho, sin importar cuántos tiros tuvo; los puntos son
-   aditivos: no se resetean al pasar de ronda, siguen sumando el total
-   tirado en toda la partida. */
+   Canvas dibujado a mano (sin librería). Cada partida es única, así que
+   siempre hay un solo sector en el eje X con la serie aditiva de puntos
+   tirados por cada jugador en la partida en curso. */
 
-/** Mangas de la partida en curso, en orden: las ya jugadas (del historial,
-    filtradas por matchId) + la ronda actual con los tiros en memoria. */
 function getMatchLegsInOrder() {
-    const completed = Store.data.matchHistory
-        .filter(l => l.matchId === currentMatchId)
-        .sort((a, b) => a.legNumber - b.legNumber);
-    const current = {
-        legNumber,
+    return [{
         players: players.map(p => ({
             profileId: p.profileId || null,
             name: p.name,
-            throws: [...p.history].reverse().map(h => h.throw),
+            // resultado real tras cada tiro (ya con el rebote de "te pasás,
+            // se resta el sobrante" aplicado) — no el tiro crudo, que
+            // ignoraría esa regla y seguiría subiendo de largo.
+            throwResults: [...p.history].reverse().map(h => ({ result: h.result, bust: h.bust })),
         })),
-    };
-    return [...completed, current];
+    }];
 }
 
-/** Tiros de un jugador en una manga dada, o null si no jugó esa manga. */
-function getPlayerThrowsInLeg(leg, player) {
+/** Resultados (post-rebote) de un jugador en una manga dada, o null si no
+    jugó esa manga. */
+function getPlayerResultsInLeg(leg, player) {
     const entry = leg.players.find(p =>
         player.profileId ? p.profileId === player.profileId : (!p.profileId && p.name === player.name));
-    return entry ? entry.throws : null;
+    return entry ? entry.throwResults : null;
 }
 
-/** Serie aditiva de un jugador a lo largo de toda la partida: cada manga
-    ocupa un sector [i, i+1) del eje X, empezando en el total acumulado
-    hasta ese momento y sumando cada tiro dentro del sector. */
+/** Serie de un jugador a lo largo de toda la partida: cada manga ocupa un
+    sector [i, i+1) del eje X. Usa el resultado real de cada tiro (no la
+    suma cruda) — si el tiro se pasó de 420, la línea sube hasta 420 y
+    "rebota" hacia abajo hasta el resultado con el sobrante restado. */
 function buildPlayerSeries(player, legs) {
-    let cumulative = 0;
     const points = [];
     legs.forEach((leg, legIdx) => {
-        const throws = getPlayerThrowsInLeg(leg, player);
-        if (throws === null) return;
-        points.push({ x: legIdx, y: cumulative });
-        throws.forEach((t, i) => {
-            cumulative += t;
-            points.push({ x: legIdx + (i + 1) / throws.length, y: cumulative });
+        const throwResults = getPlayerResultsInLeg(leg, player);
+        if (throwResults === null) return;
+        points.push({ x: legIdx, y: 0 });
+        throwResults.forEach((h, i) => {
+            const xStart = legIdx + i / throwResults.length;
+            const xEnd = legIdx + (i + 1) / throwResults.length;
+            if (h.bust) {
+                points.push({ x: xStart + (xEnd - xStart) * 0.5, y: TARGET_SCORE });
+            }
+            points.push({ x: xEnd, y: h.result });
         });
     });
     return points;
@@ -783,14 +1335,35 @@ function renderGraphLegend() {
     graphLegend.innerHTML = players.map(p => {
         const series = buildPlayerSeries(p, legs);
         const total = series.length ? series[series.length - 1].y : 0;
+        const color = p.skin.primary;
+        // El círculo es la foto de perfil si tiene una asignada; si no, su
+        // color — y el nombre siempre en su color, tenga perfil o no.
+        const swatch = p.avatar
+            ? `<img src="${p.avatar}" class="legend-swatch legend-swatch-photo" alt="">`
+            : `<span class="legend-swatch" style="background:${color};"></span>`;
         return `
         <div class="legend-item">
-            <span class="legend-swatch" style="background:${p.skin.primary};"></span>
-            <span>${escapeHTML(p.name)} — ${total} pts acumulados (ronda ${legNumber})</span>
+            ${swatch}
+            <span style="color:${color};">${escapeHTML(p.name)} — ${total} pts acumulados</span>
         </div>
     `;
     }).join('');
 }
+
+/** Líneas fijas del eje Y: en vez de escalar según el puntaje de la
+    partida, siempre marca los mismos cortes alrededor del objetivo (420),
+    con 420 remarcado en verde por ser la meta. GRAPH_MAX_Y da un poco de
+    margen arriba de 420 para las líneas que se pasan, sin dibujar esa
+    marca (ya no se muestra el 525). */
+const GRAPH_MAX_Y = 460;
+const GRAPH_GRIDLINES = [
+    { value: 0, color: '#000000' },
+    { value: 105, color: '#000000' },
+    { value: 210, color: '#e63946' },
+    { value: 315, color: '#c98a00' },
+    { value: 420, color: '#2ecc16' },
+];
+const GRAPH_BG = '#cfcfcf';
 
 function drawScoreChart() {
     const dpr = window.devicePixelRatio || 1;
@@ -811,21 +1384,24 @@ function drawScoreChart() {
     const numLegs = Math.max(1, legs.length);
     const series = players.map(p => ({ player: p, points: buildPlayerSeries(p, legs) }));
 
-    const allY = series.flatMap(s => s.points.map(pt => pt.y));
-    const rawMax = Math.max(TARGET_SCORE, ...allY, 1);
-    const maxY = Math.ceil((rawMax * 1.1) / 50) * 50;
-
     const xFor = (x) => padding.left + (x / numLegs) * plotW;
-    const yFor = (value) => padding.top + plotH - (value / maxY) * plotH;
+    const yFor = (value) => padding.top + plotH - (value / GRAPH_MAX_Y) * plotH;
+
+    // fondo "blanco roto" de TODO el canvas (no solo el área graficada) para
+    // que los números del eje Y, que viven en el margen izquierdo, también
+    // tengan contraste — si no, el negro del 0/105 desaparece contra el
+    // fondo oscuro de la app.
+    ctx.fillStyle = GRAPH_BG;
+    ctx.fillRect(0, 0, width, height);
 
     // sectores por ronda (fondo alternado + líneas divisorias)
     for (let i = 0; i < numLegs; i++) {
         if (i % 2 === 1) {
-            ctx.fillStyle = 'rgba(255,255,255,0.03)';
+            ctx.fillStyle = 'rgba(0,0,0,0.04)';
             ctx.fillRect(xFor(i), padding.top, xFor(i + 1) - xFor(i), plotH);
         }
     }
-    ctx.strokeStyle = 'rgba(255,255,255,0.12)';
+    ctx.strokeStyle = 'rgba(0,0,0,0.15)';
     ctx.lineWidth = 1;
     for (let i = 0; i <= numLegs; i++) {
         ctx.beginPath();
@@ -834,31 +1410,21 @@ function drawScoreChart() {
         ctx.stroke();
     }
 
-    // etiquetas de ronda
-    ctx.fillStyle = 'rgba(255,255,255,0.75)';
-    ctx.font = 'bold 15px monospace';
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'top';
-    legs.forEach((leg, i) => {
-        ctx.fillText(`RONDA ${leg.legNumber}`, xFor(i + 0.5), padding.top + plotH + 12);
-    });
-
-    // gridlines + eje Y
-    ctx.strokeStyle = 'rgba(255,255,255,0.12)';
+    // gridlines + eje Y (valores y colores fijos; 420 = objetivo, en verde)
     ctx.font = 'bold 15px monospace';
     ctx.textAlign = 'right';
     ctx.textBaseline = 'middle';
-    const steps = 4;
-    for (let i = 0; i <= steps; i++) {
-        const value = Math.round((maxY / steps) * i);
+    GRAPH_GRIDLINES.forEach(({ value, color }) => {
         const y = yFor(value);
+        ctx.strokeStyle = color;
+        ctx.lineWidth = value === TARGET_SCORE ? 4 : 2.5;
         ctx.beginPath();
         ctx.moveTo(padding.left, y);
         ctx.lineTo(padding.left + plotW, y);
         ctx.stroke();
-        ctx.fillStyle = 'rgba(255,255,255,0.75)';
+        ctx.fillStyle = color;
         ctx.fillText(String(value), padding.left - 10, y);
-    }
+    });
 
     // series por jugador
     series.forEach(({ player, points }) => {
@@ -866,7 +1432,7 @@ function drawScoreChart() {
         const color = player.skin.primary;
 
         ctx.strokeStyle = color;
-        ctx.lineWidth = 2;
+        ctx.lineWidth = 3.5;
         ctx.shadowColor = color;
         ctx.shadowBlur = 6;
         ctx.beginPath();
@@ -886,7 +1452,7 @@ function drawScoreChart() {
         });
     });
 
-    ctx.strokeStyle = 'rgba(255,255,255,0.3)';
+    ctx.strokeStyle = 'rgba(0,0,0,0.3)';
     ctx.lineWidth = 1;
     ctx.strokeRect(padding.left, padding.top, plotW, plotH);
 }

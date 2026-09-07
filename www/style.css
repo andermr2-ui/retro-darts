@@ -79,9 +79,11 @@ header {
 }
 
 .neon-title {
-    font-size: min(3vw, 4vh);
+    /* clamp() asegura un piso legible en ventanas angostas — antes esto
+       era min(3vw, 4vh) y se volvía ilegible cuando la ventana era chica. */
+    font-size: clamp(1.4rem, min(6vw, 6vh), 3rem);
     color: #fff;
-    text-shadow: 
+    text-shadow:
         0 0 5px #fff,
         0 0 10px #fff,
         0 0 20px var(--neon-pink),
@@ -93,83 +95,63 @@ header {
 
 .subtitle {
     color: var(--neon-cyan);
-    font-size: min(1.2vw, 1.8vh);
+    font-size: clamp(0.6rem, min(2vw, 1.8vh), 1.1rem);
     margin-bottom: 0.5vh;
     text-shadow: 0 0 5px var(--neon-cyan);
 }
 
 .rule {
     color: var(--neon-yellow);
-    font-size: min(0.8vw, 1.2vh);
+    font-size: clamp(0.5rem, min(1.4vw, 1.2vh), 0.8rem);
     line-height: 1.2;
 }
 
 .toolbar {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     margin-bottom: 1vh;
     flex-shrink: 0;
 }
 
-.round-indicator {
-    color: var(--neon-green);
-    font-size: min(1vw, 1.5vh);
-    text-shadow: 0 0 5px var(--neon-green);
+.toolbar .retro-btn {
+    font-size: 1.1rem;
+    padding: 0.7rem 1.4rem;
 }
 
-.header-actions {
-    display: flex;
-    gap: 1vw;
-}
-
-.controls {
-    display: flex;
-    flex-direction: column;
+.corner-btn {
+    position: absolute;
+    top: 1vh;
+    width: 2.6rem;
+    height: 2.6rem;
+    box-sizing: border-box;
+    line-height: 1;
+    z-index: 30;
+    background: rgba(0,0,0,0.5);
+    border: 2px solid var(--neon-pink);
+    color: var(--neon-pink);
+    padding: 0;
+    cursor: pointer;
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(255, 0, 255, 0.3), inset 0 0 10px rgba(255, 0, 255, 0.2);
+    transition: 0.2s;
+    display: inline-flex;
     align-items: center;
-    gap: 0.6vh;
-    margin-bottom: 1vh;
-    flex-shrink: 0;
-}
-
-.add-mode-toggle {
-    display: flex;
-    gap: 0.5vw;
-}
-
-.mode-btn {
-    opacity: 0.4;
-}
-
-.mode-btn.active {
-    opacity: 1;
-    background: rgba(255,255,255,0.08);
-}
-
-.add-player-row {
-    display: flex;
     justify-content: center;
-    gap: 1vw;
 }
 
-.library-picker-wrap {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5vh;
+.corner-btn:hover {
+    background: var(--neon-pink);
+    color: var(--bg-color);
+    box-shadow: 0 0 20px var(--neon-pink);
 }
 
-.library-label {
-    font-size: 0.6rem;
-    color: #888;
+.corner-btn-left {
+    left: 1vw;
 }
 
-.library-picker {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.6rem;
-    max-width: 90vw;
+.corner-btn-right {
+    right: 1vw;
 }
 
 .player-chip {
@@ -198,21 +180,14 @@ header {
     pointer-events: none;
 }
 
-.chip-avatar {
-    width: 1.4rem;
-    height: 1.4rem;
-    border-radius: 50%;
-    flex-shrink: 0;
-}
-
 input[type="text"],
 select {
     background: rgba(0,0,0,0.5);
     border: 2px solid var(--neon-cyan);
     color: var(--neon-cyan);
     font-family: var(--font-retro);
-    padding: 0.5vh 1vw;
-    font-size: min(1vw, 1.5vh);
+    padding: 0.6rem 0.8rem;
+    font-size: clamp(0.8rem, 1.6vw, 1.1rem);
     outline: none;
     box-shadow: 0 0 10px rgba(0, 255, 255, 0.2), inset 0 0 10px rgba(0, 255, 255, 0.1);
 }
@@ -276,50 +251,67 @@ input::placeholder {
     transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
 }
 
-/* Ficha "cerrada": ya tiene un tiro tipeado esperando a SIGUIENTE TURNO */
-.player-card.locked {
-    background: rgba(11, 11, 26, 0.95);
-    transform: translateY(-4px);
-    box-shadow: 0 12px 25px rgba(0,0,0,0.6);
-}
-
-.locked-panel {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 1cqmin;
-    border: 1px dashed;
-    border-radius: 2cqmin;
-    padding: 2cqmin;
-}
-
-.locked-icon {
-    font-size: 8cqmin;
-}
-
-.locked-value {
-    font-size: 12cqmin;
-    color: #fff;
-}
-
 /* Everything inside .player-card scales automatically based on its size! */
+
+/** Aviso de "te quedaste atrás" — no bloquea nada, solo llama la atención
+    5 segundos (ver checkRoundSync en script.js). */
+@keyframes flash-warning {
+    0%, 100% {
+        border-color: var(--grid-color);
+        box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    }
+    50% {
+        border-color: #ff3333;
+        box-shadow: 0 0 25px 4px rgba(255, 51, 51, 0.7);
+    }
+}
+
+.player-card.flash-warning {
+    animation: flash-warning 0.5s ease-in-out infinite;
+}
 
 .btn-remove {
     position: absolute;
     top: 2cqmin;
     right: 2cqmin;
-    background: transparent;
-    color: var(--neon-pink);
-    border: 1px solid var(--neon-pink);
-    font-family: var(--font-retro);
-    cursor: pointer;
-    font-size: 5cqmin;
-    padding: 1cqmin 2cqmin;
-    border-radius: 1cqmin;
-    transition: 0.2s;
     z-index: 20;
+}
+
+/* Caja cuadrada uniforme para todos los botones-ícono de la ficha: skin,
+   YouTube, editar, deshacer y eliminar. El color de borde/texto lo pone
+   cada botón en línea (el color del jugador), no esta clase. */
+.marker-icon-btn {
+    width: 15cqmin;
+    height: 15cqmin;
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 1px solid;
+    border-radius: 1cqmin;
+    cursor: pointer;
+    transition: 0.2s;
+    padding: 0;
+    text-decoration: none;
+    flex-shrink: 0;
+}
+
+/** Íconos dibujados a mano (PNG en blanco y negro, procesados a
+    blanco=transparente/negro=opaco) aplicados como máscara CSS — así se
+    siguen coloreando automáticamente con el color de cada jugador, igual
+    que los SVG, sin tener que hornear un color fijo en el archivo. */
+.icon-mask {
+    display: inline-block;
+    width: 85%;
+    height: 85%;
+    background-color: currentColor;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-size: contain;
+    mask-size: contain;
 }
 
 .btn-remove:hover {
@@ -334,42 +326,63 @@ input::placeholder {
     height: 1cqmin;
 }
 
-.win-badge {
+.card-top-left {
     position: absolute;
     top: 2cqmin;
     left: 2cqmin;
-    border: 1px solid;
-    border-radius: 1cqmin;
-    font-size: 4cqmin;
-    padding: 1cqmin 2cqmin;
+    display: flex;
+    align-items: center;
+    gap: 1cqmin;
     z-index: 20;
+}
+
+.player-avatar {
+    width: 9cqmin;
+    height: 9cqmin;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid rgba(255,255,255,0.4);
+    flex-shrink: 0;
 }
 
 .player-name {
     font-size: 8cqmin;
     margin-bottom: 1cqmin;
-    margin-top: 3cqmin;
+    margin-top: 15cqmin;
     text-align: center;
     word-break: break-word;
-    transition: transform 0.2s;
     line-height: 1.2;
 }
 
-.player-name:hover {
-    transform: scale(1.05);
+/* Ocupa todo el espacio libre entre el nombre y el cuadro de puntos, y
+   centra el número (+ el historial de tiros) justo en el medio de esa
+   franja, en vez de quedar pegado arriba. */
+.card-middle {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 0;
+    position: relative;
 }
 
 .player-score {
-    font-size: 25cqmin;
+    font-size: 42cqmin;
     text-align: center;
     color: #fff;
-    margin: auto 0;
+    margin: 1cqmin 0;
+    flex-shrink: 0;
 }
 
+/* Pegado al margen inferior de la ficha — el padding de 2cqmin del propio
+   .player-card ya deja el mismo margen que los botones de arriba, así que
+   alcanza con empujarlo al fondo con margin-top:auto. */
 .throw-controls {
     display: flex;
     gap: 2cqmin;
-    margin-bottom: 2cqmin;
+    margin-top: auto;
+    align-items: stretch;
+    flex-shrink: 0;
 }
 
 .throw-input {
@@ -379,26 +392,82 @@ input::placeholder {
     background: rgba(0,0,0,0.6);
     border: 1px solid;
     font-family: var(--font-retro);
-    padding: 2cqmin;
-    font-size: 6cqmin;
+    padding: 2.5cqmin;
+    font-size: 9cqmin;
     outline: none;
 }
 
-.retro-btn.sm {
-    padding: 2cqmin 3cqmin;
-    font-size: 6cqmin;
-    border-width: 1px;
-    border-style: solid;
+/* Las flechitas nativas del input number tapaban el "PUNTOS" — se
+   reemplazan por .throw-stepper, un recuadro aparte. */
+.throw-input::-webkit-outer-spin-button,
+.throw-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.throw-input[type="number"] {
+    -moz-appearance: textfield;
+    appearance: textfield;
 }
 
-/* Para botones fuera de .player-card: .sm depende de cqmin, que solo
-   funciona dentro de un contenedor con container-type (el card). Todo lo
-   que vive en el header, controles o modales usa .compact en su lugar. */
+/* La mitad de ancho que .marker-icon-btn (el botón OK, a su lado). */
+.throw-stepper {
+    display: flex;
+    flex-direction: column;
+    width: 7.5cqmin;
+    flex-shrink: 0;
+    border: 1px solid;
+    border-radius: 1cqmin;
+    overflow: hidden;
+}
+
+.throw-stepper-btn {
+    flex: 1;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    font-size: 4cqmin;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-retro);
+}
+
+.throw-stepper-btn:first-child {
+    border-bottom: 1px solid currentColor;
+}
+
+/* Botones fuera de .player-card usan .compact — cqmin solo funciona dentro
+   de un contenedor con container-type (el card). */
 .retro-btn.compact {
     padding: 0.4rem 0.8rem;
     font-size: 0.65rem;
     border-width: 1px;
     border-style: solid;
+}
+
+/* 1.5x el tamaño de .compact (0.4rem 0.8rem / 0.65rem), para que ¡JUGAR!
+   destaque sobre BIBLIOTECA / PERFILES / CERRAR. */
+.btn-play {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.975rem;
+}
+
+/* El PNG ES el botón entero (dibujado a mano, con su propio marco y
+   color) — nada de cromado propio encima, se muestra tal cual a su
+   tamaño real. */
+.btn-image-only {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    line-height: 0;
+}
+
+.btn-image-only img {
+    display: block;
+    image-rendering: pixelated;
 }
 
 .retro-btn.yellow {
@@ -408,26 +477,46 @@ input::placeholder {
 }
 
 /* Solo el DESHACER dentro de la card debe ocupar todo el ancho */
-.btn-undo {
+/* Franja fija entre el número y el cuadro de puntos: siempre muestra solo
+   la última jugada. Al pasar el mouse por el medio de la ficha (donde vive
+   el número), se despliega el historial completo tapando el número, sin
+   tocar el nombre — y con scroll propio si no entra en el espacio de la
+   ficha. */
+.history-strip {
+    flex-shrink: 0;
+    border-top: 1px dashed var(--grid-color);
     margin-top: 1cqmin;
-    width: 100%;
+    padding-top: 1cqmin;
 }
 
-.history-container {
-    max-height: 25cqh;
-    overflow-y: auto;
+.history-last {
     font-size: 4cqmin;
     color: #888;
     line-height: 1.4;
-    padding-top: 2cqmin;
-    margin-top: 2cqmin;
-    border-top: 1px dashed var(--grid-color);
 }
 
-.history-container::-webkit-scrollbar {
+.history-full {
+    display: none;
+    position: absolute;
+    inset: 0;
+    overflow-y: auto;
+    background: rgba(11, 11, 26, 0.97);
+    font-size: 4cqmin;
+    color: #888;
+    line-height: 1.4;
+    padding: 1cqmin 2cqmin;
+    border-radius: 1cqmin;
+    z-index: 15;
+}
+
+.card-middle:hover .history-full {
+    display: block;
+}
+
+.history-full::-webkit-scrollbar {
     width: 2cqw;
 }
-.history-container::-webkit-scrollbar-thumb {
+.history-full::-webkit-scrollbar-thumb {
     background: #444;
 }
 
@@ -475,6 +564,29 @@ input::placeholder {
 .modal-content-graph {
     width: min(95vw, 1100px);
     text-align: left;
+    position: relative;
+}
+
+.modal-close-x {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: transparent;
+    color: var(--neon-pink);
+    border: 1px solid var(--neon-pink);
+    font-family: var(--font-retro);
+    cursor: pointer;
+    font-size: 0.9rem;
+    padding: 0.4rem 0.7rem;
+    border-radius: 4px;
+    transition: 0.2s;
+    z-index: 5;
+}
+
+.modal-close-x:hover {
+    background: var(--neon-pink);
+    color: #000;
+    box-shadow: 0 0 10px var(--neon-pink);
 }
 
 .modal-content-wide > .retro-btn,
@@ -527,6 +639,28 @@ input::placeholder {
     display: flex;
     align-items: center;
     gap: 1rem;
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 0;
+    font-family: inherit;
+    text-align: left;
+    cursor: pointer;
+}
+
+.profile-header:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.profile-header:not(:disabled):hover .profile-name {
+    text-decoration: underline;
+}
+
+.profile-rank {
+    font-size: 0.65rem;
+    color: var(--neon-yellow);
+    margin-top: 0.2rem;
 }
 
 .profile-swatch {
@@ -535,6 +669,11 @@ input::placeholder {
     border-radius: 50%;
     border: 2px solid;
     flex-shrink: 0;
+}
+
+.profile-swatch-photo {
+    object-fit: cover;
+    border-color: #888;
 }
 
 .profile-info {
@@ -560,18 +699,6 @@ input::placeholder {
     gap: 0.4rem;
 }
 
-.profile-form {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.8rem;
-    margin-bottom: 1.5rem;
-}
-
-.profile-form input[type="text"] {
-    flex: 1;
-    min-width: 150px;
-}
-
 .empty-hint {
     color: #888;
     font-size: 0.7rem;
@@ -579,25 +706,60 @@ input::placeholder {
     margin: 1.5rem 0;
 }
 
-.turn-bar {
+.modal-hint {
+    color: #888;
+    font-size: 0.6rem;
+    margin: 0.5rem 0 1rem;
+}
+
+.new-player-form {
+    display: flex;
+    gap: 0.6rem;
+    margin: 1.5rem 0 1rem;
+}
+
+.new-player-form input[type="text"] {
+    flex: 1;
+    min-width: 180px;
+}
+
+.new-player-links {
     display: flex;
     justify-content: center;
-    margin-top: 1vh;
-    flex-shrink: 0;
+    gap: 0.8rem;
+    margin: 1.5rem 0 1rem;
 }
 
-.turn-btn {
-    font-size: min(1.3vw, 2vh);
-    padding: 1vh 3vw;
-    color: var(--neon-green);
-    border-color: var(--neon-green);
-    box-shadow: 0 0 10px rgba(57, 255, 20, 0.3), inset 0 0 10px rgba(57, 255, 20, 0.2);
+.library-toolbar {
+    display: flex;
+    gap: 0.6rem;
+    margin: 1rem 0;
 }
 
-.turn-btn:hover {
-    background: var(--neon-green);
-    color: var(--bg-color);
-    box-shadow: 0 0 20px var(--neon-green);
+.library-toolbar input[type="text"] {
+    flex: 1;
+}
+
+.btn-plus {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
+
+.library-musician-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    max-height: 45vh;
+    overflow-y: auto;
+    margin-bottom: 1rem;
+}
+
+.chip-role {
+    font-size: 0.55rem;
+    color: #888;
+    text-transform: uppercase;
 }
 
 .icon-btn {
@@ -627,17 +789,22 @@ input::placeholder {
 
 .legend-item {
     display: flex;
-    align-items: flex-start;
-    gap: 0.4rem;
+    align-items: center;
+    gap: 0.5rem;
     max-width: 320px;
 }
 
 .legend-swatch {
-    width: 0.7rem;
-    height: 0.7rem;
-    margin-top: 0.15rem;
+    width: 1.3rem;
+    height: 1.3rem;
+    margin-top: 0.05rem;
     border-radius: 50%;
     flex-shrink: 0;
+}
+
+.legend-swatch-photo {
+    object-fit: cover;
+    border: 1px solid rgba(255,255,255,0.4);
 }
 
 /* Historial */
@@ -702,4 +869,81 @@ input::placeholder {
         transform: translate(var(--tx), var(--ty)) scale(1) rotate(var(--rot));
         opacity: 0;
     }
+}
+
+/* Apariencia (color RGB / foto / cámara) */
+.skin-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+}
+
+.skin-section-label {
+    font-size: 0.6rem;
+    color: #888;
+}
+
+.skin-color-row,
+.skin-photo-row {
+    display: flex;
+    gap: 0.6rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+input[type="color"] {
+    width: 3rem;
+    height: 2.2rem;
+    padding: 0.15rem;
+    background: rgba(0,0,0,0.5);
+    border: 2px solid var(--neon-cyan);
+    cursor: pointer;
+}
+
+.hidden-file-input {
+    display: none;
+}
+
+.skin-photo-preview-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-top: 0.4rem;
+}
+
+.skin-photo-preview {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--neon-cyan);
+}
+
+.skin-webcam-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 0.6rem;
+}
+
+.skin-webcam-wrap video {
+    width: 100%;
+    max-width: 320px;
+    border: 2px solid var(--neon-cyan);
+    border-radius: 4px;
+}
+
+.skin-webcam-actions {
+    display: flex;
+    gap: 0.6rem;
+}
+
+.modal-message {
+    color: #fff;
+    font-size: 0.75rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
 }

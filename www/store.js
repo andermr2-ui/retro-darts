@@ -19,9 +19,19 @@ function skinById(id) {
   return SKINS.find(s => s.id === id) || SKINS[0];
 }
 
+/** Resuelve el skin real de un perfil: si es un color RGB personalizado
+    (id 'custom'), lo reconstruye a partir de customColor en vez de buscarlo
+    en la lista fija de SKINS. */
+function resolveSkin(skinId, customColor) {
+  if (skinId === 'custom' && customColor) {
+    return { id: 'custom', label: 'Personalizado', primary: customColor, accent: customColor };
+  }
+  return skinById(skinId);
+}
+
 const Store = {
   KEY: 'retrodarts.v1',
-  data: { profiles: [], matchHistory: [], currentMatch: null },
+  data: { profiles: [], matchHistory: [], currentMatch: null, customMusicians: [] },
 
   load() {
     try {
@@ -31,11 +41,24 @@ const Store = {
         this.data.profiles = Array.isArray(parsed.profiles) ? parsed.profiles : [];
         this.data.matchHistory = Array.isArray(parsed.matchHistory) ? parsed.matchHistory : [];
         this.data.currentMatch = parsed.currentMatch || null;
+        this.data.customMusicians = Array.isArray(parsed.customMusicians) ? parsed.customMusicians : [];
       }
     } catch (e) {
       console.warn('Datos corruptos, empiezo de cero.', e);
     }
     return this.data;
+  },
+
+  /* ---- músicos personalizados (biblioteca) ---- */
+  addCustomMusician(name, role) {
+    const clean = (name || '').trim();
+    if (!clean || !role) return null;
+    const dupe = this.data.customMusicians.find(m => m.name.toLowerCase() === clean.toLowerCase());
+    if (dupe) return { dupe };
+    const musician = { name: clean, role };
+    this.data.customMusicians.push(musician);
+    this.save();
+    return { musician };
   },
 
   save() {
@@ -54,6 +77,8 @@ const Store = {
       id: uid(),
       name: clean,
       skin: skinById(skinId).id,
+      customColor: null,
+      avatar: null,
       stats: { legsPlayed: 0, legsWon: 0, matchesWon: 0 },
     };
     this.data.profiles.push(profile);
