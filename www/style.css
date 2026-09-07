@@ -542,23 +542,34 @@ input::placeholder {
    el número), se despliega el historial completo tapando el número, sin
    tocar el nombre — y con scroll propio si no entra en el espacio de la
    ficha. */
+/* Sin caja propia: .history-last y .history-full pasan a ser hijos
+   directos de la grilla de .player-card (ver el bloque unificado más
+   abajo), cada uno con su propia grid-area — así .history-full puede
+   ocupar la celda "middle" (la del número) en vez de heredar el ancho
+   angosto de esta fila, sin depender de position:absolute (que, al no
+   tener .history-strip ni .card-middle una caja propia, terminaba
+   midiendo contra toda la ficha en vez de solo esta zona). */
 .history-strip {
-    flex-shrink: 0;
+    display: contents;
+}
+
+/* La línea punteada y el padding que antes tenía .history-strip viven
+   acá — es el elemento que de verdad ocupa la fila "history" ahora.
+   margin-bottom separa esta franja 10px de los botones de abajo. */
+.history-last {
     border-top: 1px dashed var(--grid-color);
     margin-top: 1cqmin;
     padding-top: 1cqmin;
-}
-
-.history-last {
+    margin-bottom: 10px;
     font-size: 4cqmin;
     color: #888;
     line-height: 1.4;
 }
 
+/* Ocupa la celda "middle" (la misma que el número) al desplegarse, así
+   que solo tapa el número — nunca el nombre ni los botones. */
 .history-full {
     display: none;
-    position: absolute;
-    inset: 0;
     overflow-y: auto;
     background: rgba(11, 11, 26, 0.97);
     font-size: 4cqmin;
@@ -569,7 +580,13 @@ input::placeholder {
     z-index: 15;
 }
 
-.card-middle:hover .history-full {
+/* Se despliega solo al pasar el mouse por la franja de .history-last
+   (el "contador de rondas", entre la línea punteada y los botones de
+   abajo) — NO por encima del número. El segundo selector
+   (.history-full:hover) es para que no se cierre solo al mover el mouse
+   desde .history-last hacia arriba, sobre el propio texto desplegado. */
+.history-last:hover ~ .history-full,
+.history-full:hover {
     display: block;
 }
 
@@ -1090,8 +1107,12 @@ input[type="color"] {
         justify-content: center;
     }
 
-    .history-strip {
+    .history-last {
         grid-area: history;
+    }
+
+    .history-full {
+        grid-area: middle;
     }
 
     .throw-controls {
