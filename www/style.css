@@ -332,12 +332,6 @@ input::placeholder {
     mask-size: contain;
 }
 
-.btn-remove:hover {
-    background: var(--neon-pink);
-    color: #000;
-    box-shadow: 0 0 10px var(--neon-pink);
-}
-
 .card-gradient {
     position: absolute;
     top: 0; left: 0; right: 0;
@@ -420,8 +414,18 @@ input::placeholder {
     flex-shrink: 0;
 }
 
-.throw-input {
+/* El input y el "PUNTOS" van en un wrapper común: el input de verdad
+   (transparente, sin su propio texto) y un <span> superpuesto que hace
+   de placeholder — ver .throw-placeholder. Un ::placeholder nativo
+   acepta transform:scaleX en el CSSOM pero este motor no lo pinta, así
+   que no había forma de comprimirlo sin un nodo real que envolver. */
+.throw-input-wrap {
+    position: relative;
     flex-grow: 1;
+    display: flex;
+}
+
+.throw-input {
     width: 100%;
     text-align: center;
     background: rgba(0,0,0,0.6);
@@ -430,6 +434,19 @@ input::placeholder {
     padding: 2.5cqmin;
     font-size: 9cqmin;
     outline: none;
+}
+
+.throw-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-retro);
+    font-size: 9cqmin;
+    opacity: 0.3;
+    pointer-events: none;
+    transform-origin: center;
 }
 
 /* Las flechitas nativas del input number tapaban el "PUNTOS" — se
@@ -983,6 +1000,18 @@ input[type="color"] {
     margin-bottom: 1.5rem;
 }
 
+/* El texto y los botones SÍ/NO de "¿Eliminar este jugador?" se veían
+   chicos — el doble de tamaño (texto y padding) solo acá, sin tocar
+   .retro-btn global (lo usan todos los demás botones de la app). */
+#confirm-modal .modal-message {
+    font-size: 1.5rem;
+}
+
+#confirm-modal .retro-btn {
+    padding: 0.8rem 1.6rem;
+    font-size: 1.3rem;
+}
+
 /* Reordenamiento de la ficha en celular (ver mockup del usuario). Va al
    final del archivo a propósito: son overrides de reglas base como
    .player-card{display:flex} / .throw-stepper-btn{...} definidas más
@@ -1033,10 +1062,19 @@ input[type="color"] {
         display: contents;
     }
 
+    /* align-self:stretch (default) a propósito, NO center: fitScoreText
+       necesita que esta caja mida exactamente la celda de la grilla
+       (ancho y alto) para poder calcular el tamaño de fuente — con
+       align-self:center la caja se encoge al contenido y la medición
+       queda circular (ver fitScoreText en script.js). El centrado
+       visual del número se resuelve acá adentro con flex. */
     .player-score {
         grid-area: middle;
         min-width: 0;
-        align-self: center;
+        min-height: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .history-strip {
@@ -1073,7 +1111,7 @@ input[type="color"] {
         order: 2;
     }
 
-    .throw-input {
+    .throw-input-wrap {
         order: 3;
     }
 

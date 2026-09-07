@@ -600,8 +600,15 @@ function fitScoreText(scoreEl) {
     // texto sea chico o grande (nunca desborda, nunca "scrollea"). Para
     // saber cuánto ocupa el número tal cual se va a ver, hay que medirlo
     // con canvas.measureText en la tipografía real.
-    const maxWidth = cardMiddle.clientWidth * 0.94;
-    const maxHeight = cardMiddle.clientHeight * 0.68;
+    //
+    // El alto disponible normalmente se mide del padre (.card-middle), que
+    // en escritorio es una caja flex real. En celular .card-middle es
+    // display:contents (no genera caja — ver el fix del historial), así
+    // que ahí no mide nada y hay que usar la propia caja de scoreEl
+    // (align-self:stretch en mobile hace que sea del tamaño exacto de la
+    // celda de la grilla, ver .player-score en style.css).
+    const maxWidth = scoreEl.clientWidth * 0.94;
+    const maxHeight = (cardMiddle.clientHeight > 0 ? cardMiddle.clientHeight : scoreEl.clientHeight) * 0.68;
     if (maxWidth <= 0 || maxHeight <= 0) return;
 
     const text = scoreEl.textContent;
@@ -623,7 +630,21 @@ function fitScoreText(scoreEl) {
 
 /** Nombres largos no pasan a una 2da línea: se comprimen horizontalmente
     (scaleX) para entrar en una sola línea, en vez de agrandar la ficha o
-    achicar la altura de letra como hace fitScoreText con el puntaje. */
+    achicar la altura de letra como hace fitScoreText con el puntaje.
+    También se reusa para .throw-placeholder ("PUNTOS"): un ::placeholder
+    nativo acepta transform en el CSSOM pero no lo pinta en este motor,
+    así que el placeholder es un <span> real superpuesto al input (ver
+    .throw-input-wrap en style.css) — mismo problema de texto que se
+    corta, misma solución.
+
+    Además centra por TINTA real, no por caja de avance: el ancho que
+    devuelve measureText() (naturalWidth) es el "avance" del texto, pero
+    en "Press Start 2P" la tinta de algunas palabras no queda pareja
+    dentro de ese avance (ej. "PUNTOS" mide 150px de avance pero la
+    tinta real va de 0 a 147 — sobran 3px a la derecha y 0 a la
+    izquierda). Si se centra por avance, se ve descentrada a ojo aunque
+    la CAJA esté perfectamente centrada. actualBoundingBoxLeft/Right da
+    los bordes reales de la tinta para corregir ese desvío. */
 function fitNameText(nameTextEl) {
     if (!nameTextEl) return;
     nameTextEl.style.transform = 'none';
@@ -634,11 +655,15 @@ function fitNameText(nameTextEl) {
 
     const cs = getComputedStyle(nameTextEl);
     _fitScoreCtx.font = `${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`;
-    const naturalWidth = _fitScoreCtx.measureText(nameTextEl.textContent).width;
+    const metrics = _fitScoreCtx.measureText(nameTextEl.textContent);
+    const naturalWidth = metrics.width;
 
-    if (naturalWidth > maxWidth) {
-        nameTextEl.style.transform = `scaleX(${maxWidth / naturalWidth})`;
-    }
+    const inkLeftGap = -metrics.actualBoundingBoxLeft;
+    const inkRightGap = naturalWidth - metrics.actualBoundingBoxRight;
+    const shiftX = (inkRightGap - inkLeftGap) / 2;
+
+    const scale = naturalWidth > maxWidth ? maxWidth / naturalWidth : 1;
+    nameTextEl.style.transform = `scaleX(${scale}) translateX(${shiftX}px)`;
 }
 
 let fitScoreResizeTimer = null;
@@ -647,6 +672,7 @@ function refitAllScores() {
     fitScoreResizeTimer = setTimeout(() => {
         document.querySelectorAll('.player-score').forEach(fitScoreText);
         document.querySelectorAll('.player-name-text').forEach(fitNameText);
+        document.querySelectorAll('.throw-placeholder').forEach(fitNameText);
     }, 120);
 }
 
@@ -744,7 +770,7 @@ function renderPlayers() {
 
             card.innerHTML = `
                 <div class="card-gradient" style="background: linear-gradient(90deg, transparent, ${color}, transparent);"></div>
-                <button class="btn-remove marker-icon-btn" onclick="removePlayer('${player.id}')" style="border-color:${color}; color:${color};" onmouseover="this.style.background='${color}20'" onmouseout="this.style.background='none'" title="Quitar Jugador">X</button>
+                <button class="btn-remove marker-icon-btn" onclick="removePlayer('${player.id}')" style="border-color:${color}; color:${color};" onmouseover="this.style.background='${color}20'" onmouseout="this.style.background='none'" title="Quitar Jugador">${iconMask('delete')}</button>
 
                 <div class="card-top-left">
                     ${isKnownMusicianName(player.name) ? `
@@ -770,7 +796,10 @@ function renderPlayers() {
 
                 <div class="throw-controls">
                     <button class="marker-icon-btn" onclick="undoLast('${player.id}')" style="border-color:${color}; color:${color};" onmouseover="this.style.background='${color}20'" onmouseout="this.style.background='none'" title="Deshacer">${iconMask('undo')}</button>
-                    <input type="number" id="input-${player.id}" class="throw-input" placeholder="PUNTOS" min="0" step="0.5" autocomplete="off" style="border-color:${color}; color:${color}; box-shadow: inset 0 0 10px ${color}20;">
+                    <div class="throw-input-wrap">
+                        <input type="number" id="input-${player.id}" class="throw-input" min="0" step="0.5" autocomplete="off" style="border-color:${color}; color:${color}; box-shadow: inset 0 0 10px ${color}20;">
+                        <span class="throw-placeholder" style="color:${color};">PUNTOS</span>
+                    </div>
                     <div class="throw-stepper" style="border-color:${color};">
                         <button type="button" class="throw-stepper-btn" onclick="adjustThrowInput('${player.id}', 1)" style="color:${color};" onmouseover="this.style.background='${color}20'" onmouseout="this.style.background='none'" title="Sumar">▲</button>
                         <button type="button" class="throw-stepper-btn" onclick="adjustThrowInput('${player.id}', -1)" style="color:${color};" onmouseover="this.style.background='${color}20'" onmouseout="this.style.background='none'" title="Restar">▼</button>
@@ -788,9 +817,12 @@ function renderPlayers() {
                             submitScore(player.id);
                         }
                     });
+                    input.addEventListener('input', () => updatePlaceholderVisibility(input));
+                    updatePlaceholderVisibility(input);
                 }
                 fitScoreText(card.querySelector('.player-score'));
                 fitNameText(card.querySelector('.player-name-text'));
+                fitNameText(card.querySelector('.throw-placeholder'));
             }, 0);
 
             playerIndex++;
@@ -799,13 +831,24 @@ function renderPlayers() {
     }
 }
 
+/** El "PUNTOS" es un <span> real superpuesto (ver .throw-input-wrap), no
+    el placeholder nativo del input — así que hay que ocultarlo/mostrarlo
+    a mano según si el input tiene texto, cosa que el navegador hacía
+    solo con el placeholder de verdad. */
+function updatePlaceholderVisibility(input) {
+    const placeholder = input.parentElement.querySelector('.throw-placeholder');
+    if (placeholder) placeholder.hidden = input.value !== '';
+}
+
 /** Sube/baja el valor del cuadro de puntos de a un paso — reemplaza a las
     flechitas nativas del input number, que quedaban tapando el placeholder
-    "PUNTOS". */
+    "PUNTOS". stepUp/stepDown no disparan el evento 'input', así que hay
+    que refrescar la visibilidad del placeholder a mano. */
 function adjustThrowInput(playerId, direction) {
     const input = document.getElementById(`input-${playerId}`);
     if (!input) return;
     if (direction > 0) input.stepUp(); else input.stepDown();
+    updatePlaceholderVisibility(input);
 }
 window.adjustThrowInput = adjustThrowInput;
 
