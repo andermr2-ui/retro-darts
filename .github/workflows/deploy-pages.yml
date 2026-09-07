@@ -1,3 +1,4 @@
+# Publica www/ en GitHub Pages en cada push a main.
 name: Deploy to GitHub Pages
 
 on:
