@@ -589,6 +589,10 @@ function handleScore(playerId, points) {
         openExternalUrl('https://www.youtube.com/watch?v=EyF4js4PJGc&list=RDEyF4js4PJGc&start_radio=1&pp=ygUYb25lIG1ldGFsbGljYSByYWRpbyBlZGl0oAcB');
     }
 
+    if (newScore === 2) {
+        openExternalUrl('https://www.youtube.com/watch?v=fugRvM6s5fc&list=RDfugRvM6s5fc&start_radio=1&pp=ygUYZG9zIGdhcmRlbmlhcyByYWRpbyBlZGl0oAcB');
+    }
+
     if (newScore === TARGET_SCORE) {
         showWinner(player);
     }
