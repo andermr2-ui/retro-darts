@@ -993,6 +993,19 @@ function showWinner(player) {
     winnerText.textContent = `${player.name} GANA!`;
     winnerModal.classList.remove('hidden');
     createWeedExplosion();
+    playVictorySong();
+}
+
+/** Easter egg: tema de victoria al clavar el 420 exacto. */
+function playVictorySong() {
+    try {
+        const audio = new Audio('sounds/victory.mp3');
+        audio.play().catch(() => {
+            // Si el navegador bloquea audio (sin interacción previa, etc.), no pasa nada.
+        });
+    } catch (e) {
+        // Idem — no pasa nada si Audio() no está disponible.
+    }
 }
 
 function getPixelLeafSVG() {
