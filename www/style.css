@@ -72,6 +72,14 @@ body {
     z-index: 10;
 }
 
+/* display:contents por defecto: este wrapper no debe afectar el layout
+   normal (desktop / celular vertical), donde history/título/NUEVO
+   JUGADOR/gráfico siguen apilados como siempre. Solo se activa como
+   fila real en celular horizontal (ver media query más abajo). */
+.header-row {
+    display: contents;
+}
+
 header {
     text-align: center;
     margin-bottom: 1vh;
@@ -253,6 +261,82 @@ input::placeholder {
     .player-row {
         flex: none;
         height: 300px;
+    }
+}
+
+/* Celular en horizontal (ancho de sobra, muy poco alto): una sola fila
+   con todas las fichas a tamaño legible fijo, con scroll horizontal
+   para llegar a las de más allá (ver isShortLandscape en script.js). */
+@media (max-height: 500px) and (min-width: 641px) {
+    .players-grid {
+        overflow-x: hidden;
+    }
+
+    .player-row {
+        justify-content: flex-start;
+        overflow-x: auto;
+        overflow-y: hidden;
+    }
+
+    .player-row .player-card {
+        flex: none;
+        width: 300px;
+    }
+
+    /* Encabezado compacto en una sola línea: historial | título/regla/
+       objetivo | NUEVO JUGADOR | gráfico — para no gastar tanto alto
+       vertical, que es justo lo que escasea en este modo. */
+    .header-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 4px;
+        flex-shrink: 0;
+    }
+
+    .header-row .corner-btn {
+        position: static;
+        width: 1.8rem;
+        height: 1.8rem;
+        flex-shrink: 0;
+    }
+
+    .header-row header {
+        flex: 1;
+        min-width: 0;
+        text-align: left;
+        margin-bottom: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .header-row .neon-title {
+        display: inline;
+        font-size: 1rem;
+        margin-bottom: 0;
+    }
+
+    .header-row .subtitle,
+    .header-row .rule {
+        display: inline;
+        font-size: 0.55rem;
+        margin-bottom: 0;
+    }
+
+    .header-row .subtitle::before,
+    .header-row .rule::before {
+        content: " — ";
+    }
+
+    .header-row .toolbar {
+        margin-bottom: 0;
+        flex-shrink: 0;
+    }
+
+    .header-row .toolbar .retro-btn {
+        font-size: 0.65rem;
+        padding: 0.4rem 0.7rem;
     }
 }
 

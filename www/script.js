@@ -728,13 +728,24 @@ function debouncedRelayout() {
     relayoutTimer = setTimeout(renderPlayers, 150);
 }
 
-/** En pantallas angostas (celular), meter 2-3 fichas por fila las deja
-    ilegibles — mejor una debajo de la otra a todo el ancho, con scroll. */
+/** En pantallas angostas (celular en vertical), meter 2-3 fichas por
+    fila las deja ilegibles — mejor una debajo de la otra a todo el
+    ancho, con scroll vertical. */
 const MOBILE_BREAKPOINT = 640;
+
+/** Celular en horizontal: ancho de sobra pero muy poco alto — el grid de
+    varias filas (pensado para monitores altos) las deja chicas o
+    cortadas. Una sola fila con scroll horizontal (ver .player-row en
+    style.css) mantiene las fichas a tamaño legible. */
+const LANDSCAPE_MAX_HEIGHT = 500;
+function isShortLandscape() {
+    return window.innerWidth >= MOBILE_BREAKPOINT && window.innerHeight <= LANDSCAPE_MAX_HEIGHT;
+}
 
 function getSymmetricLayout(n) {
     if (n === 0) return [];
     if (window.innerWidth < MOBILE_BREAKPOINT) return new Array(n).fill(1);
+    if (isShortLandscape()) return [n];
     if (n === 1) return [1];
     if (n === 2) return [2];
     if (n === 3) return [3];

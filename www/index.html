@@ -5,24 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Retro Darts 420</title>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=31">
+    <link rel="stylesheet" href="style.css?v=32">
 </head>
 <body>
     <div class="crt-overlay"></div>
     <div class="scanlines"></div>
     
     <div class="container">
-        <button id="btn-open-history" class="corner-btn corner-btn-left" title="Historial"></button>
-        <button id="btn-open-graph" class="corner-btn corner-btn-right" title="Ver gráfico de puntuación"></button>
+        <div class="header-row">
+            <button id="btn-open-history" class="corner-btn corner-btn-left" title="Historial"></button>
 
-        <header>
-            <h1 class="neon-title" data-text="DARTS 420">DARTS 420</h1>
-            <p class="subtitle">OBJETIVO: 420 EXACTOS</p>
-            <p class="rule">Si te pasás, el sobrante se resta.</p>
-        </header>
+            <header>
+                <h1 class="neon-title" data-text="DARTS 420">DARTS 420</h1>
+                <p class="subtitle">OBJETIVO: 420 EXACTOS</p>
+                <p class="rule">Si te pasás, el sobrante se resta.</p>
+            </header>
 
-        <div class="toolbar">
-            <button id="btn-open-new-player" class="retro-btn">NUEVO JUGADOR</button>
+            <div class="toolbar">
+                <button id="btn-open-new-player" class="retro-btn">NUEVO JUGADOR</button>
+            </div>
+
+            <button id="btn-open-graph" class="corner-btn corner-btn-right" title="Ver gráfico de puntuación"></button>
         </div>
 
         <div id="players-container" class="players-grid">
@@ -166,6 +169,6 @@
         </div>
     </div>
     <script src="store.js?v=2"></script>
-    <script src="script.js?v=17"></script>
+    <script src="script.js?v=18"></script>
 </body>
 </html>
