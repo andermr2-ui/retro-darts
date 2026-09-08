@@ -105,6 +105,16 @@ function openExternal(url) {
 }
 window.openExternal = openExternal;
 
+/** Variante de openExternal() para disparar la apertura desde código (no
+    desde el onclick de un <a>) — la usa el easter egg de los 44 puntos. */
+function openExternalUrl(url) {
+    if (window.__TAURI__ && window.__TAURI__.opener) {
+        window.__TAURI__.opener.open(url);
+    } else {
+        window.open(url, '_blank', 'noopener,noreferrer');
+    }
+}
+
 /** Formaciones de banda plausibles por cantidad de integrantes. Cada una es
     una lista de roles (no de personas) — evita absurdos como 3 guitarristas
     o 2 cantantes sin bajista. */
@@ -574,6 +584,10 @@ function handleScore(playerId, points) {
 
     if (newScore === 69) {
         playWolfWhistle();
+    }
+
+    if (newScore === 44) {
+        openExternalUrl('https://www.youtube.com/watch?v=Sx9whwosHo0&list=RDSx9whwosHo0&start_radio=1');
     }
 
     if (newScore === TARGET_SCORE) {
