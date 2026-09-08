@@ -573,6 +573,10 @@ function handleScore(playerId, points) {
         openExternalUrl('https://www.youtube.com/watch?v=Sx9whwosHo0&list=RDSx9whwosHo0&start_radio=1');
     }
 
+    if (newScore === 99) {
+        openExternalUrl('https://www.youtube.com/watch?v=qhw-XlTMB5I&list=RDqhw-XlTMB5I&start_radio=1');
+    }
+
     if (newScore === TARGET_SCORE) {
         showWinner(player);
     }
