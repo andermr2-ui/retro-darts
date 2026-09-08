@@ -524,33 +524,16 @@ function removePlayer(playerId) {
     });
 }
 
-/** Easter egg: silbido "fiu fiu" al llegar a 69 puntos exactos. Sintetizado
-    con Web Audio (glissando sub-agudo-grave), sin archivo de audio. */
+/** Easter egg: silbido "fiu fiu" al llegar a 69 puntos exactos —
+    archivo de audio provisto por el usuario (www/sounds/fiu-fiu.mp3). */
 function playWolfWhistle() {
     try {
-        const AudioCtx = window.AudioContext || window.webkitAudioContext;
-        const ctx = new AudioCtx();
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-        osc.type = 'sine';
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-
-        const now = ctx.currentTime;
-        const duration = 0.7;
-        osc.frequency.setValueAtTime(600, now);
-        osc.frequency.exponentialRampToValueAtTime(1800, now + duration * 0.45);
-        osc.frequency.exponentialRampToValueAtTime(500, now + duration);
-
-        gain.gain.setValueAtTime(0.0001, now);
-        gain.gain.exponentialRampToValueAtTime(0.3, now + 0.05);
-        gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
-
-        osc.start(now);
-        osc.stop(now + duration + 0.05);
-        osc.onended = () => ctx.close();
+        const audio = new Audio('sounds/fiu-fiu.mp3');
+        audio.play().catch(() => {
+            // Si el navegador bloquea audio (sin interacción previa, etc.), no pasa nada.
+        });
     } catch (e) {
-        // Si el navegador bloquea audio (sin interacción previa, etc.), no pasa nada.
+        // Idem — no pasa nada si Audio() no está disponible.
     }
 }
 
